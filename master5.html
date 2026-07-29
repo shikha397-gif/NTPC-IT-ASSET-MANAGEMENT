@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Master (S) - IT Assets Management</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+    <!-- Main Full-Screen Layout Wrapper -->
+    <div class="app-wrap full-viewport-height">
+        
+        <!-- Sidebar + Core Workspace (No Upper Navbar Header) -->
+        <div class="main-container headerless-layout">
+            
+            <!-- Left Side Control Sidebar Menu -->
+            <aside class="sidebar">
+                <div class="menu-title">Menu</div>
+                <nav class="nav-menu">
+                    <a href="home.html" id="nav-home" class="nav-item">🏠 Home</a>
+                    <a href="userarea.html" id="nav-userarea" class="nav-item">👤 User Area</a>
+                    <a href="reports.html" id="nav-reports" class="nav-item">📊 Reports</a>
+                    <a href="master.html" id="nav-master" class="nav-item active">🛠️ Master</a>
+                    <a href="transactions.html" id="nav-transactions" class="nav-item">🔄 Transactions</a>
+                    <a href="special_access.html" id="nav-special" class="nav-item">🔑 Special Access</a>
+                    <a href="#" id="nav-logout" class="nav-item logout">🔓 Logout</a>
+                </nav>
+            </aside>
+
+            <!-- Main Workspace Gray Canvas (Viewport Locked & Non-Scrollable) -->
+            <main class="submaster-panel">
+                
+                <!-- Section Headings -->
+                <div class="submaster-titles-row">
+                    <h2 class="txt-master-main">MASTER</h2>
+                    <h3 class="txt-submaster-accent">EMP MASTER (S)</h3>
+                </div>
+
+                <!-- Central Matte Black Card Search Container -->
+                <div class="submaster-search-card">
+                    <form id="empSearchForm" class="submaster-form-container">
+                        
+                        <div class="form-input-group">
+                            <label for="searchFieldInput">Enter Employee ID</label>
+                            <input type="text" id="searchFieldInput" placeholder="e.g. E101" class="form-search-input" required autocomplete="off">
+                        </div>
+
+                        <!-- Full Width Turquoise Execution Button -->
+                        <button type="submit" class="btn-search-submit">Search</button>
+
+                    </form>
+                </div>
+
+                <!-- Footer Navigation Back Button Row -->
+                <div class="back-btn-row">
+                    <a href="master.html" class="btn-submaster-back"> Back</a>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script src="home.js"></script>
+</body>
+</html>

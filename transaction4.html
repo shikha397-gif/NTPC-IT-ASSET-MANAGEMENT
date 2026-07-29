@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flag Updation - IT Assets Management</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+    <!-- Main Full-Screen Layout Wrapper Container -->
+    <div class="app-wrap">
+        
+        <!-- Large Top Branding Header Navigation Banner -->
+        <header class="app-branding-header">
+            <h1>IT ASSETS MANAGEMENT</h1>
+            <!-- Horizontal Quick Access Navbar Links Matrix -->
+            <nav class="horizontal-navbar">
+                <a href="home.html">Home</a>
+                <a href="userarea.html">User Area</a>
+                <a href="reports.html">Reports</a>
+                <a href="master.html">Master</a>
+                <a href="transactions.html" class="active">Transactions</a>
+                <a href="special_access.html">Special Access</a>
+                <a href="#" class="logout-link">Logout</a>
+            </nav>
+        </header>
+
+        <!-- Sidebar + Core Workspace Inner Layout Section -->
+        <div class="main-container">
+            
+            <!-- Left Side Control Sidebar Menu Drawer -->
+            <aside class="sidebar">
+                <div class="menu-title">Menu</div>
+                <nav class="nav-menu">
+                    <a href="home.html" id="nav-home" class="nav-item">🏠 Home</a>
+                    <a href="userarea.html" id="nav-userarea" class="nav-item">👤 User Area</a>
+                    <a href="reports.html" id="nav-reports" class="nav-item">📊 Reports</a>
+                    <a href="master.html" id="nav-master" class="nav-item">🛠️ Master</a>
+                    <a href="transactions.html" id="nav-transactions" class="nav-item active">🔄 Transactions</a>
+                    <a href="special_access.html" id="nav-special" class="nav-item">🔑 Special Access</a>
+                    <a href="#" id="nav-logout" class="nav-item logout">🔓 Logout</a>
+                </nav>
+            </aside>
+
+            <!-- Main Workspace Gray Canvas (Viewport Locked & Non-Scrollable) -->
+            <main class="submaster-panel">
+                
+                <!-- Section Headings -->
+                <div class="submaster-titles-row">
+                    <h2 class="txt-master-main">TRANSACTIONS</h2>
+                    <h3 class="txt-submaster-accent">FLAG UPDATION — STATUS OVERRIDES</h3>
+                </div>
+
+                <!-- Central Matte Black Card Search/Update Capsule Container -->
+                <div class="submaster-search-card">
+                    <form id="txFlagUpdateForm" class="submaster-form-container">
+                        
+                        <!-- Input Field 1: Asset Code Target -->
+                        <div class="form-input-group">
+                            <label for="flagAssetIdInput">Enter System Asset ID</label>
+                            <input type="text" id="flagAssetIdInput" placeholder="e.g. C101992" class="form-search-input" required autocomplete="off" style="max-width: 100%;">
+                        </div>
+
+                        <!-- Input Field 2: New Override Status Flag Dropdown -->
+                        <div class="form-input-group" style="margin-top: -10px;">
+                            <label for="flagSelectInput" style="color: #ffffff;">Select New System Flag Status</label>
+                            <select id="flagSelectInput" class="input-control-blue" required style="max-width: 250px; background-color: #ffffff; color: #000000; border: none;">
+                                <option value="" disabled selected>-- Select Status Flag --</option>
+                                <option value="Active/Deployed">Active / Deployed</option>
+                                <option value="Surrendered/Stock">Surrendered / Stock Room</option>
+                                <option value="Under Maintenance">Under Maintenance</option>
+                                <option value="Missing/Stolen">Missing / Stolen Flag</option>
+                            </select>
+                        </div>
+
+                        <!-- Full Width Turquoise Execution Action Button -->
+                        <button type="submit" class="btn-search-submit">Update System Flags</button>
+
+                    </form>
+                </div>
+
+                <!-- Footer Navigation Back Row Button -->
+                <div class="back-btn-row">
+                    <a href="transactions.html" class="btn-submaster-back"> Back</a>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script src="home.js"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Area - IT Assets Management</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+    <!-- Top Header Navigation -->
+    <header class="top-header">
+        <div class="header-title">Dashboard of IT Assets Management</div>
+        <div class="header-buttons">
+            <button id="headerBtnHelp" class="btn btn-secondary">Help</button>
+            <button id="headerBtnSettings" class="btn btn-secondary">Settings</button>
+            
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo-container">
+                <img src="ntpc logo.png" alt="NTPC Logo" class="sidebar-logo">
+            </div>
+            <nav class="nav-menu">
+                <a href="home.html" id="nav-home" class="nav-item">Home</a>
+                <a href="userarea.html" id="nav-userarea" class="nav-item active">User Area</a>
+                <a href="reports.html" id="nav-reports" class="nav-item">Reports</a>
+                <a href="master.html" id="nav-master" class="nav-item">Master</a>
+                <a href="transactions.html" id="nav-transactions" class="nav-item">Transactions</a>
+                <a href="special_access.html" id="nav-special" class="nav-item">Special Access</a>
+                <a href="#" id="nav-logout" class="nav-item logout">Logout</a>
+            </nav>
+        </aside>
+
+        <!-- Main User Area View Panel -->
+        <main class="console-panel">
+            
+            <!-- Blue Top Banner Console Header -->
+            <div class="console-banner">
+                <div class="banner-left">
+                    <span class="badge-node">EMPLOYEE NODE ACTIVE</span>
+                    <h2 class="banner-title">User Console</h2>
+                    <p class="banner-subtitle">Overview of organizational asset containers, personalized forms, and allocated hardware directories.</p>
+                </div>
+                <div class="banner-right">
+                    <button id="btnRefreshNode" class="btn-refresh">Refresh Node</button>
+                </div>
+            </div>
+
+            <!-- Three Card Column Container Grid -->
+            <div class="cards-grid">
+                
+                <!-- Card 1: Useful Docs (Orange Theme) -->
+                <div class="console-card">
+                    <div class="card-header-row">
+                        <div class="card-icon-box"></div>
+                        <h3 class="card-main-title">Useful Docs</h3>
+                    </div>
+                    <div class="card-image-display border-orange">
+                        <img src="computer1.jpg" alt="Docs Background" class="inner-display-img">
+                        <div class="display-overlay-text">
+                            <h4>No documents listed yet.</h4>
+                            <p>Click upload or synchronize with backend server.</p>
+                        </div>
+                    </div>
+                    <!-- Linked to your upcoming docs sub-file -->
+                    <a href="userarea3.html" class="action-bar-btn bg-orange" style="text-decoration:none;">Open Useful Docs</a>
+                </div>
+
+                <!-- Card 2: IT Assets Personal (Blue Theme) -->
+                <div class="console-card">
+                    <div class="card-header-row">
+                        <div class="card-icon-box"></div>
+                        <h3 class="card-main-title">IT Assets - Your Name</h3>
+                    </div>
+                    <div class="card-image-display border-blue">
+                        <img src="computer 2.jpg" alt="Personal Assets Background" class="inner-display-img">
+                        <div class="display-overlay-text">
+                            <h4>No assigned assets found.</h4>
+                            <p>System awaiting hardware allocation records.</p>
+                        </div>
+                    </div>
+                    <!-- Linked directly to your independent userarea1.html file -->
+                    <a href="userarea1.html" class="action-bar-btn bg-blue" style="text-decoration:none;">Open Personal Assets</a>
+                </div>
+
+                <!-- Card 3: IT Assets Department (Green Theme) -->
+                <div class="console-card">
+                    <div class="card-header-row">
+                        <div class="card-icon-box"></div>
+                        <h3 class="card-main-title">IT Assets of Ind Dept</h3>
+                    </div>
+                    <div class="card-image-display border-green">
+                        <img src="computer3.jpg" alt="Department Database Background" class="inner-display-img">
+                        <div class="display-overlay-text">
+                            <h4>Department database unlinked.</h4>
+                            <p>Connect node to visualize shared inventory.</p>
+                        </div>
+                    </div>
+                    <!-- Linked directly to your independent userarea2.html file -->
+                    <a href="userarea2.html" class="action-bar-btn bg-green" style="text-decoration:none;">Open Department Assets</a>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="home.js"></script>
+</body>
+</html>

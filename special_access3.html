@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Password - IT Assets Management</title>
+    <link rel="stylesheet" href="home.css">
+    
+    <!-- वन-पेज नॉन-स्क्रॉलिंग और पासवर्ड इनपुट के लिए विशेष CSS -->
+    <style>
+        html, body, .app-wrap {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .main-container {
+            display: flex;
+            height: calc(100vh - 60px);
+            width: 100%;
+        }
+
+        .submaster-panel {
+            flex: 1;
+            padding: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            background-color: #0d1b2a;
+            box-sizing: border-box;
+        }
+
+        /* पासवर्ड फॉर्म का मुख्य डार्क फ्रेम */
+        .password-form-wrapper {
+            background-color: #0b132b;
+            border: 1px solid #1c2541;
+            border-radius: 6px;
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* वर्टिकली सेंटर लॉक */
+            box-sizing: border-box;
+            max-width: 550px;
+            margin: 0 auto; /* हॉरिजॉन्टली सेंटर लॉक */
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        .form-title-segment {
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: #00b4d8;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #1c2541;
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group-block {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 18px;
+        }
+
+        .form-group-block label {
+            font-size: 0.82rem;
+            color: #a0aec0;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .input-control-blue {
+            width: 100%;
+            padding: 11px 15px;
+            background-color: #1c2541;
+            border: 1px solid #0077b6;
+            border-radius: 4px;
+            color: #ffffff;
+            font-size: 0.9rem;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .input-control-blue:focus {
+            border-color: #00b4d8;
+            box-shadow: 0 0 5px rgba(0, 180, 216, 0.4);
+        }
+
+        .btn-password-submit {
+            width: 100%;
+            background-color: #0077b6; /* थीम का मैचिंग ब्लू बटन */
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 5px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-password-submit:hover {
+            background-color: #00b4d8;
+        }
+
+        .back-btn-row {
+            flex-shrink: 0;
+            margin-top: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Full-Screen Layout Wrapper Container -->
+    <div class="app-wrap">
+        
+        <!-- Top Branding Header Navigation Banner -->
+        <header class="top-header">
+            <div class="header-title">Dashboard of IT Assets Management</div>
+            <div class="header-buttons">
+                <button id="headerBtnHelp" class="btn btn-secondary">Help</button>
+                <button id="headerBtnSettings" class="btn btn-secondary">Settings</button>
+                <button id="headerBtnLogin" class="btn btn-primary">Login</button>
+            </div>
+        </header>
+
+        <!-- Sidebar + Core Workspace Inner Layout Section -->
+        <div class="main-container">
+            
+            <!-- Left Side Control Sidebar Menu Drawer -->
+            <aside class="sidebar">
+                <div class="logo-container">
+                    <img src="ntpc logo.png" alt="NTPC Logo" class="sidebar-logo">
+                </div>
+                <nav class="nav-menu">
+                    <a href="home.html" id="nav-home" class="nav-item">Home</a>
+                    <a href="userarea.html" id="nav-userarea" class="nav-item">User Area</a>
+                    <a href="reports.html" id="nav-reports" class="nav-item">Reports</a>
+                    <a href="master.html" id="nav-master" class="nav-item">Master</a>
+                    <a href="transactions.html" id="nav-transactions" class="nav-item">Transactions</a>
+                    <a href="special_access.html" id="nav-special" class="nav-item active">Special Access</a>
+                    <a href="#" id="nav-logout" class="nav-item logout">Logout</a>
+                </nav>
+            </aside>
+            <!-- Main Workspace Canvas (Viewport Locked & Non-Scrollable) -->
+            <main class="submaster-panel">
+                
+                <!-- Section Headings -->
+                <div style="flex-shrink: 0; margin-bottom: 15px; text-align: center;">
+                    <h2 style="color: #ffffff; font-size: 1.6rem; margin: 0;">SPECIAL ACCESS</h2>
+                    <h3 style="color: #00b4d8; font-size: 1rem; margin: 2px 0 0 0; font-weight: bold; letter-spacing: 0.5px;">CHANGE MASTER PASSWORD</h3>
+                </div>
+
+                <!-- Main Password Form Wrapper Box Container -->
+                <div class="password-form-wrapper">
+                    <div class="form-title-segment">🔑 Cryptographic Passkey Vault</div>
+                    
+                    <form id="passwordResetForm">
+                        
+                        <!-- Input 1: Officer Security Passkey -->
+                        <div class="form-group-block">
+                            <label>OFFICER SECURITY KEY (PASSKEY)</label>
+                            <input type="text" id="passSecKey" class="input-control-blue" placeholder="e.g. NTPC-SEC-008" required>
+                        </div>
+
+                        <!-- Input 2: Current Old Password -->
+                        <div class="form-group-block">
+                            <label>CURRENT PASSWORD</label>
+                            <input type="password" id="oldPassword" class="input-control-blue" placeholder="••••••••" required>
+                        </div>
+
+                        <!-- Input 3: New Secure Password -->
+                        <div class="form-group-block">
+                            <label>NEW VAULT PASSWORD</label>
+                            <input type="password" id="newPassword" class="input-control-blue" placeholder="Min 8 characters" minlength="8" required>
+                        </div>
+
+                        <!-- Input 4: Confirm New Password -->
+                        <div class="form-group-block">
+                            <label>CONFIRM NEW VAULT PASSWORD</label>
+                            <input type="password" id="confirmPassword" class="input-control-blue" placeholder="Retype new password" minlength="8" required>
+                        </div>
+
+                        <!-- Full Width Blue Submit Button -->
+                        <button type="submit" class="btn-password-submit">COMMIT PASSWORD CHANGE</button>
+                    </form>
+                </div>
+
+                <!-- Footer Navigation Back Row Button -->
+                <div class="back-btn-row">
+                    <a href="special_access.html" class="btn-submaster-back" style="display: inline-block; background-color: #1c2541; color: #ffffff; text-decoration: none; padding: 10px 24px; border-radius: 4px; font-size: 0.85rem; font-weight: bold; border: 1px solid #1c2541; cursor: pointer;">⬅ Return to Gateway</a>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+            <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const passForm = document.getElementById('passwordResetForm');
+            if (passForm) {
+                passForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    const oldPass = document.getElementById('oldPassword').value;
+                    const newPass = document.getElementById('newPassword').value;
+                    const confPass = document.getElementById('confirmPassword').value;
+
+                    if (newPass !== confPass) {
+                        alert("❌ Confirm password does not match with the new password!");
+                        return;
+                    }
+
+                    // [CRITICAL SYNC]: वेरिएबल्स के नाम बिल्कुल बैकएंड server.js से मैच कर दिए हैं
+                    const payload = {
+                        passSecKey: document.getElementById('passSecKey').value,
+                        oldPassword: oldPass,
+                        newPassword: newPass
+                    };
+
+                    fetch('/api/special/change-password', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    })
+                    .then(res => res.json())
+                    .then(res => {
+                        alert(res.message);
+                        if (res.success) passForm.reset();
+                    })
+                    .catch(err => alert("❌ Master ledger update pipeline interrupted."));
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Disposal - IT Assets Management</title>
+    <link rel="stylesheet" href="home.css">
+    
+    <!-- वन-पेज नॉन-स्क्रॉलिंग ग्रिड बाउंड्री को सुरक्षित रखने के लिए कस्टमाइज्ड CSS -->
+    <style>
+        html, body, .app-wrap {
+            margin: 0; padding: 0; height: 100vh; overflow: hidden; box-sizing: border-box;
+        }
+        .main-container { display: flex; height: calc(100vh - 60px); width: 100%; }
+        .submaster-panel {
+            flex: 1; padding: 15px 20px; overflow: hidden; display: flex; flex-direction: column;
+            background-color: #0d1b2a; box-sizing: border-box;
+        }
+        .submaster-form-card, .records-header-label, .submaster-titles-row {
+            flex-shrink: 0;
+        }
+        
+        /* नीचे की तालिका ग्रिड के लिए अंदरूनी स्मूथ स्क्रॉल बार */
+        .submaster-table-frame {
+            background-color: #0b132b; border: 1px solid #1c2541; border-radius: 6px;
+            padding: 10px; flex: 1; overflow-y: auto; box-sizing: border-box; margin-bottom: 5px;
+        }
+        .submaster-table-frame::-webkit-scrollbar { width: 5px; }
+        .submaster-table-frame::-webkit-scrollbar-thumb { background: #1c2541; border-radius: 4px; }
+        .back-btn-row { flex-shrink: 0; margin-top: 5px; }
+    </style>
+</head>
+<body>
+
+    <!-- Main Full-Screen Layout Wrapper Container -->
+    <div class="app-wrap">
+        
+        <!-- Top Branding Header Navigation Banner -->
+        <header class="app-branding-header">
+            <h1>IT ASSETS MANAGEMENT</h1>
+            <nav class="horizontal-navbar">
+                <a href="home.html">Home</a>
+                <a href="userarea.html">User Area</a>
+                <a href="reports.html">Reports</a>
+                <a href="master.html">Master</a>
+                <a href="transactions.html" class="active">Transactions</a>
+                <a href="special_access.html">Special Access</a>
+                <a href="login.html" class="logout-link">Logout</a>
+            </nav>
+        </header>
+
+        <!-- Sidebar + Core Workspace Inner Layout Section -->
+        <div class="main-container">
+            
+            <!-- Left Side Control Sidebar Menu Drawer -->
+            <aside class="sidebar">
+                <div class="menu-title">Menu</div>
+                <nav class="nav-menu">
+                    <a href="home.html" id="nav-home" class="nav-item">🏠 Home</a>
+                    <a href="userarea.html" id="nav-userarea" class="nav-item">👤 User Area</a>
+                    <a href="reports.html" id="nav-reports" class="nav-item">📊 Reports</a>
+                    <a href="master.html" id="nav-master" class="nav-item">🛠️ Master</a>
+                    <a href="transactions.html" id="nav-transactions" class="nav-item active">🔄 Transactions</a>
+                    <a href="special_access.html" id="nav-special" class="nav-item">🔑 Special Access</a>
+                    <a href="login.html" id="nav-logout" class="nav-item logout">🔓 Logout</a>
+                </nav>
+            </aside>
+
+            <!-- Main Workspace Gray Canvas (Viewport Locked & Non-Scrollable) -->
+            <main class="submaster-panel">
+                
+                <!-- Section Headings -->
+                <div class="submaster-titles-row">
+                    <h2 class="txt-master-main">TRANSACTIONS</h2>
+                    <h3 class="txt-submaster-accent">ASSET DISPOSAL — SCRAP & WRITE-OFF RECORDS</h3>
+                </div>
+
+                <!-- Interactive Form Card Housing Blue Fields -->
+                <div class="submaster-form-card">
+                    <form id="txDisposalForm" class="grid-form-body">
+                        
+                        <!-- Row 1: 3 Columns -->
+                        <div class="form-row-three">
+                            <div class="form-group-block">
+                                <label>Asset ID to Dispose</label>
+                                <input type="text" id="dispAssetId" class="input-control-blue" placeholder="e.g. C101610" required autocomplete="off">
+                            </div>
+                            <div class="form-group-block">
+                                <label>Reason for Scrap</label>
+                                <select id="dispReason" class="input-control-blue" required>
+                                    <option value="" disabled selected>-- Select Reason --</option>
+                                    <option value="Obsolete">Technically Obsolete (&gt;5 Years)</option>
+                                    <option value="Damaged">Beyond Economic Repair (Damaged)</option>
+                                    <option value="Lost">Lost / Untraceable Infrastructure</option>
+                                </select>
+                            </div>
+                            <div class="form-group-block">
+                                <label>Approved By HOD</label>
+                                <input type="text" id="dispHod" class="input-control-blue" placeholder="e.g. Dept Head Name" required autocomplete="off">
+                            </div>
+                        </div>
+
+                        <!-- Row 2: 3 Columns -->
+                        <div class="form-row-three align-bottom-row">
+                            <div class="form-group-block">
+                                <label>Scrap Recovery Value (INR)</label>
+                                <input type="number" id="dispValue" class="input-control-blue" placeholder="e.g. 1500" required autocomplete="off">
+                            </div>
+                            <div class="form-group-block">
+                                <label>Disposal Date</label>
+                                <input type="date" id="dispDate" class="input-control-blue" required>
+                            </div>
+                            <!-- Balanced Submit Row Container -->
+                            <div class="form-group-block button-cell-stretch">
+                                <button type="submit" class="btn-submit-green" style="width: 100%;">Authorize Disposal</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <!-- Dynamic Records Table Frame ready for Backend integration loops -->
+                <div class="records-header-label">Historical Scrap & Officially Written-Off Hardware Registry</div>
+                <div class="submaster-table-frame">
+                    <table class="records-data-table" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                #SR
+                                <th>ASSET ID</th>
+                                <th>REASON FOR SCRAP</th>
+                                <th>APPROVED BY HOD</th>
+                                <th>RECOVERY VALUE</th>
+                                <th>DISPOSAL DATE</th>
+                                <th>STATUS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="txDisposalTableBody">
+                            <!-- डेटाबेस की रो यहाँ लाइव सिंक होकर आएँगी -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Footer Navigation Back Row Button -->
+                <div class="back-btn-row">
+                    <a href="transactions.html" class="btn-submaster-back"> Back</a>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- फ़िल्टर और लाइव सिंकिंग जावास्क्रिप्ट इंजन (FIXED & MATCHED) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tableBody = document.getElementById('txDisposalTableBody');
+            const disposalForm = document.getElementById('txDisposalForm');
+
+            // 1. फंक्शन: डेटाबेस से लाइव डिस्पोजल लिस्ट लोड करके टेबल में दिखाना
+            function loadDisposalLogs() {
+                const timestamp = new Date().getTime();
+                
+                // [PATH SYNC FIX]: इसे बिल्कुल सही बैकएंड रूट से मैच कर दिया गया है
+                fetch(`/api/transactions/disposal-list?v=${timestamp}`)
+                    .then(response => {
+                        if (!response.ok) throw new Error('Data pipeline connection failed');
+                        return response.json();
+                    })
+                    .then(res => {
+                        if (res.success && tableBody) {
+                            tableBody.innerHTML = res.html;
+                            console.log("✅ Scrap ledger grid synchronized successfully with SQL Server.");
+                        }
+                    })
+                    .catch(err => {
+                        console.error('Error loading disposal logs:', err);
+                        if (tableBody) {
+                            tableBody.innerHTML = '<tr><td colspan="7" style="color: red; text-align: center; padding: 15px;">❌ Failed to load live ledger rows from SQL database.</td></tr>';
+                        }
+                    });
+            }
+
+            // पेज लोड होते ही लिस्ट को पहली बार में चमकाना
+            loadDisposalLogs();
+
+            // 2. फॉर्म सबमिशन हैंडलर
+            if (disposalForm) {
+                disposalForm.addEventListener('submit', function(e) {
+                    e.preventDefault(); // पेज रीलोड होने से रोकें
+
+                    const payload = {
+                        assetId: document.getElementById('dispAssetId').value,
+                        scrapReason: document.getElementById('dispReason').value,
+                        approvedBy: document.getElementById('dispHod').value,
+                        recoveryValue: document.getElementById('dispValue').value,
+                        disposalDate: document.getElementById('dispDate').value
+                    };
+
+                    fetch('/api/transactions/disposal-submit', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    })
+                    .then(response => {
+                        if (!response.ok) throw new Error('Submission pathway failure');
+                        return response.json();
+                    })
+                    .then(res => {
+                        if (res.success) {
+                            alert(res.message);
+                            disposalForm.reset(); // फॉर्म खाली करें
+                            loadDisposalLogs(); // नीचे की टेबल को तुरंत फ्रेश डेटा से रीलोड करें
+                        }
+                    })
+                    .catch(err => {
+                        console.error('Error submitting disposal log:', err);
+                        alert('❌ Handshake failed: Could not insert record into SQL Server.');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

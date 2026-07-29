@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Useful Documents Console - IT Assets</title>
+    <link rel="stylesheet" href="home.css">
+    
+    <!-- सुंदर, साफ और कॉम्पैक्ट लेआउट के लिए अपडेटेड CSS -->
+    <style>
+        .console-panel {
+            flex: 1;
+            padding: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            background-color: #0d1b2a;
+        }
+
+        .console-banner {
+            background-color: #0b132b;
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #1c2541;
+            flex-shrink: 0;
+        }
+
+        .badge-node {
+            background-color: #ff5722;
+            color: #ffffff;
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .banner-title {
+            font-size: 1.4rem;
+            margin: 5px 0 2px 0;
+        }
+
+        .banner-subtitle {
+            color: #a0aec0;
+            font-size: 0.85rem;
+        }
+
+        .btn-refresh {
+            background-color: #1c2541;
+            color: #ffffff;
+            border: 1px solid #1c2541;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* डाक्यूमेंट्स का मुख्य बॉक्स */
+        .full-docs-container {
+            background-color: #0b132b;
+            border: 1px solid #1c2541;
+            border-radius: 6px;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* बाहरी स्क्रीन को लॉक रखेगा */
+        }
+
+        .docs-section-title {
+            font-size: 1.05rem;
+            font-weight: bold;
+            border-bottom: 1px solid #1c2541;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            color: #00b4d8;
+            flex-shrink: 0;
+        }
+
+        /* केवल लिस्ट के अंदर स्क्रॉल बार लाने के लिए */
+        .docs-grid-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex: 1;
+            overflow-y: auto; /* लिस्ट के अंदर स्मूथ स्क्रॉल चालू */
+            padding-right: 8px;
+        }
+
+        /* स्क्रोलबार को आपकी डार्क थीम के अनुसार सुंदर और पतला बनाने के लिए */
+        .docs-grid-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        .docs-grid-list::-webkit-scrollbar-track {
+            background: #0b132b;
+        }
+        .docs-grid-list::-webkit-scrollbar-thumb {
+            background: #1c2541;
+            border-radius: 10px;
+        }
+        .docs-grid-list::-webkit-scrollbar-thumb:hover {
+            background: #ff5722; /* होवर करने पर ऑरेंज हो जाएगा */
+        }
+
+        /* रो (Rows) की स्टाइल - बिल्कुल साफ और व्यवस्थित */
+        .docs-grid-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #1c2541;
+            padding: 14px 20px;
+            margin-bottom: 10px; /* फिक्स गैप */
+            border-radius: 4px;
+            border-left: 4px solid #ff5722;
+            transition: background-color 0.2s ease;
+        }
+
+        .docs-grid-item:hover {
+            background-color: #233154;
+        }
+
+        .docs-grid-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .doc-meta-title {
+            font-size: 0.92rem;
+            font-weight: bold;
+        }
+
+        .doc-meta-desc {
+            color: #a0aec0;
+            font-size: 0.8rem;
+            margin-top: 3px;
+        }
+
+        .btn-view-pdf {
+            background-color: #ff5722;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 0.82rem;
+            font-weight: bold;
+            white-space: nowrap;
+            transition: background-color 0.2s;
+        }
+
+        .btn-view-pdf:hover {
+            background-color: #ff7043;
+        }
+
+        .btn-panel-back {
+            display: inline-block;
+            background-color: #1c2541;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-top: 10px;
+            border: 1px solid #1c2541;
+            flex-shrink: 0;
+        }
+        
+        .btn-panel-back:hover {
+            background-color: #233154;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Header Navigation -->
+    <header class="top-header">
+        <div class="header-title">Dashboard of IT Assets Management</div>
+        <div class="header-buttons">
+            <button id="headerBtnHelp" class="btn btn-secondary">Help</button>
+            <button id="headerBtnSettings" class="btn btn-secondary">Settings</button>
+            
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo-container">
+                <img src="ntpc logo.png" alt="NTPC Logo" class="sidebar-logo">
+            </div>
+            <nav class="nav-menu">
+                <a href="home.html" id="nav-home" class="nav-item">Home</a>
+                <a href="userarea.html" id="nav-userarea" class="nav-item active">User Area</a>
+                <a href="reports.html" id="nav-reports" class="nav-item">Reports</a>
+                <a href="master.html" id="nav-master" class="nav-item">Master</a>
+                <a href="transactions.html" id="nav-transactions" class="nav-item">Transactions</a>
+                <a href="special_access.html" id="nav-special" class="nav-item">Special Access</a>
+                <a href="#" id="nav-logout" class="nav-item logout">Logout</a>
+            </nav>
+        </aside>
+        <!-- Main User Area View Panel -->
+        <main class="console-panel">
+            
+            <!-- Blue Top Banner Console Header -->
+            <div class="console-banner">
+                <div class="banner-left">
+                    <span class="badge-node">DOCUMENTATION CENTER</span>
+                    <h2 class="banner-title">Useful IT Documents & Guidelines</h2>
+                    <p class="banner-subtitle">NTPC official hardware requisition forms, internal network connection guides, and cyber compliance ledgers.</p>
+                </div>
+                <div class="banner-right">
+                    <button id="btnRefreshNode" class="btn-refresh">Refresh Node</button>
+                </div>
+            </div>
+
+            <!-- SINGLE LARGE CLEAN CONTAINER SECTION (Perfect Viewport Bound) -->
+            <div class="full-docs-container">
+                <div class="docs-section-title">📄 Available Publications</div>
+                
+                <!-- Documents List Container with smooth inside scroll -->
+                <ul class="docs-grid-list">
+                    <li class="docs-grid-item">
+                        <div class="docs-grid-link">
+                            <span style="font-size: 1.3rem;">🔒</span>
+                            <div>
+                                <div class="doc-meta-title">NTPC Cyber Security Policy 2026</div>
+                                <div class="doc-meta-desc">Mandatory data governance and assets configuration guidelines.</div>
+                            </div>
+                        </div>
+                        <a href="111.pdf" target="_blank" class="btn-view-pdf">Open PDF</a>
+                    </li>
+
+                    <li class="docs-grid-item">
+                        <div class="docs-grid-link">
+                            <span style="font-size: 1.3rem;">📝</span>
+                            <div>
+                                <div class="doc-meta-title">New Asset Request Form</div>
+                                <div class="doc-meta-desc">Official workflow document required for new hardware deployment.</div>
+                            </div>
+                        </div>
+                        <a href="222.pdf" target="_blank" class="btn-view-pdf">Open PDF</a>
+                    </li>
+
+                    <li class="docs-grid-item">
+                        <div class="docs-grid-link">
+                            <span style="font-size: 1.3rem;">🌐</span>
+                            <div>
+                                <div class="doc-meta-title">VPN & Remote Access Guide</div>
+                                <div class="doc-meta-desc">Secure protocol manual for connecting to NTPC Intranet network.</div>
+                            </div>
+                        </div>
+                        <a href="3.pdf" target="_blank" class="btn-view-pdf">Open PDF</a>
+                    </li>
+
+                    <li class="docs-grid-item">
+                        <div class="docs-grid-link">
+                            <span style="font-size: 1.3rem;">🗑️</span>
+                            <div>
+                                <div class="doc-meta-title">Hardware Disposal (Scrap) Form</div>
+                                <div class="doc-meta-desc">Standard lifecycle operating system to declare an asset obsolete.</div>
+                            </div>
+                        </div>
+                        <a href="44.pdf" target="_blank" class="btn-view-pdf">Open PDF</a>
+                    </li>
+
+                    <li class="docs-grid-item">
+                        <div class="docs-grid-link">
+                            <span style="font-size: 1.3rem;">📞</span>
+                            <div>
+                                <div class="doc-meta-title">IT Helpdesk Directory & Local Floor Ambassadors</div>
+                                <div class="doc-meta-desc">Complete contact extension sheets for immediate desktop engineering assistance.</div>
+                            </div>
+                        </div>
+                        <a href="55.pdf" target="_blank" class="btn-view-pdf">Open PDF</a>
+                    </li>
+                </ul>
+
+                <!-- Back to Main Console Dashboard Button -->
+                <div style="border-top: 1px solid #1c2541; padding-top: 12px; margin-top: 5px; flex-shrink: 0;">
+                    <a href="userarea.html" class="btn-panel-back">⬅ Back to Dashboard</a>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="home.js"></script>
+</body>
+</html>

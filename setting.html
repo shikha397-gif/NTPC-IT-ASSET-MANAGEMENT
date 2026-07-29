@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings Console - IT Assets Management</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+    <!-- Main App Container Structure -->
+    <div class="app-wrap">
+        <div class="main-container full-viewport-locked-height">
+            
+            <!-- Left Side Control Sidebar Menu Drawer -->
+            <aside class="sidebar font-subtle-links">
+                <div class="logo-container">
+                    <div class="ntpc-logo-emblem-box">एनटीपीसी<br>NTPC</div>
+                </div>
+                <nav class="nav-menu">
+                    <a href="home.html" id="nav-home" class="nav-item">Home</a>
+                    <a href="userarea.html" id="nav-userarea" class="nav-item">User Area</a>
+                    <a href="reports.html" id="nav-reports" class="nav-item">Reports</a>
+                    <a href="master.html" id="nav-master" class="nav-item">Master</a>
+                    <a href="transactions.html" id="nav-transactions" class="nav-item">Transactions</a>
+                    <a href="settings.html" id="nav-settings" class="nav-item active">Settings</a>
+                </nav>
+            </aside>
+
+            <!-- Main Workspace Canvas Area (Viewport Locked) -->
+            <main class="settings-workspace-canvas">
+                
+                <!-- Premium Upper Blue Configuration Banner Header -->
+                <header class="settings-banner-header">
+                    <div class="banner-left-info">
+                        <span class="control-node-badge">CONTROL NODE</span>
+                        <h2>System Preferences Panel</h2>
+                        <p>Configure interface options, adjust telemetry thresholds, update notification streams, and modify security tokens.</p>
+                    </div>
+                    <div class="banner-right-actions">
+                        <button id="saveConfigBtn" class="btn-save-config">Save Configurations</button>
+                    </div>
+                </header>
+
+                <!-- Grid Matrix Holding Settings Options Cards -->
+                <div class="settings-cards-grid">
+                    
+                    <!-- Card 1: Profile Configuration -->
+                    <div class="settings-option-card">
+                        <div class="card-title-row">
+                            <span class="card-title-icon icon-blue"></span>
+                            <h3>Profile Configuration</h3>
+                        </div>
+                        
+                        <div class="toggle-row-item">
+                            <span class="toggle-label-txt">Display Employee ID on Header Badge</span>
+                            <label class="switch-toggle-widget">
+                                <input type="checkbox" checked>
+                                <span class="slider-round-knob"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="toggle-row-item">
+                            <span class="toggle-label-txt">Enable Quick Signature Field Auto-Fill</span>
+                            <label class="switch-toggle-widget">
+                                <input type="checkbox" checked>
+                                <span class="slider-round-knob"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="toggle-row-item">
+                            <span class="toggle-label-txt">Remember Selected Department Context</span>
+                            <label class="switch-toggle-widget">
+                                <input type="checkbox">
+                                <span class="slider-round-knob"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Interface Customization -->
+                    <div class="settings-option-card">
+                        <div class="card-title-row">
+                            <span class="card-title-icon icon-cyan"></span>
+                            <h3>Interface Customization</h3>
+                        </div>
+                        
+                        <div class="toggle-row-item">
+                            <span class="toggle-label-txt">Enable Dynamic Backdrop Blur Effects</span>
+                            <label class="switch-toggle-widget">
+                                <input type="checkbox" checked>
+                                <span class="slider-round-knob"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="toggle-row-item">
+                            <span class="toggle-label-txt">Reduce Animation Frames on Grid Zoom</span>
+                            <label class="switch-toggle-widget">
+                                <input type="checkbox">
+                                <span class="slider-round-knob"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="toggle-row-item">
+                            <span class="toggle-label-txt">High Contrast Table Font Scaling</span>
+                            <label class="switch-toggle-widget">
+                                <input type="checkbox">
+                                <span class="slider-round-knob"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Empty Space Filler Column balancing screenshot layout -->
+                    <div class="grid-layout-spacer-block"></div>
+
+                    <!-- Card 3: Notification Stream Adjustments -->
+                    <div class="settings-option-card">
+                        <div class="card-title-row">
+                            <span class="card-title-icon icon-amber"></span>
+                            <h3>Notification Stream Adjustments</h3>
+                        </div>
+                        
+                        <div class="toggle-row-item">
+                            <span class="toggle-label-txt">Real-Time Push Alerts for AMC Expirations</span>
+                            <label class="switch-toggle-widget">
+                                <input type="checkbox" checked>
+                                <span class="slider-round-knob"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="toggle-row-item">
+                            <span class="toggle-label-txt">Email Reports on New Asset Allocations</span>
+                            <label class="switch-toggle-widget">
+                                <input type="checkbox" checked>
+                                <span class="slider-round-knob"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="toggle-row-item">
+                            <span class="toggle-label-txt">Show System Synchronizing Toasts</span>
+                            <label class="switch-toggle-widget">
+                                <input type="checkbox">
+                                <span class="slider-round-knob"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+
+        </div>
+    </div>
+
+    <script src="home.js"></script>
+</body>
+</html>

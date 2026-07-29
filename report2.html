@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deptwise View Reports - IT Assets Management</title>
+    <link rel="stylesheet" href="home.css">
+    
+    <!-- वन-पेज लॉक्ड और 12 रोज़ डेटा को सुंदर दिखाने के लिए इंटरनल CSS -->
+    <style>
+        /* पूरे व्यूपोर्ट को लॉक करना ताकि मेन स्क्रीन स्क्रॉल न हो */
+        html, body, .app-wrap {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .main-container {
+            display: flex;
+            height: calc(100vh - 60px);
+            width: 100%;
+        }
+
+        .submaster-panel {
+            flex: 1;
+            padding: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        .submaster-titles-row, .report-table-caption {
+            flex-shrink: 0;
+        }
+
+        /* केवल टेबल फ्रेम के अंदर स्मूथ इनसाइड स्क्रॉल बार एक्टिव करना */
+        .reports-table-frame {
+            background-color: #0b132b;
+            border: 1px solid #1c2541;
+            border-radius: 6px;
+            padding: 10px;
+            flex: 1;
+            overflow-y: auto; 
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        /* स्क्रोलबार को डार्क थीम के हिसाब से पतला और प्रोफेशनल बनाना */
+        .reports-table-frame::-webkit-scrollbar {
+            width: 6px;
+        }
+        .reports-table-frame::-webkit-scrollbar-track {
+            background: #0b132b;
+        }
+        .reports-table-frame::-webkit-scrollbar-thumb {
+            background: #1c2541;
+            border-radius: 10px;
+        }
+        .reports-table-frame::-webkit-scrollbar-thumb:hover {
+            background: #0077b6;
+        }
+
+        .back-btn-row {
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Full-Screen Layout Wrapper Container -->
+    <div class="app-wrap">
+        
+        <!-- Top Branding Header Navigation Banner -->
+        <header class="app-branding-header">
+            <h1>IT ASSETS MANAGEMENT</h1>
+            <!-- Horizontal Quick Access Navbar Links Matrix -->
+            <nav class="horizontal-navbar">
+                <a href="home.html">Home</a>
+                <a href="userarea.html">User Area</a>
+                <a href="reports.html" class="active">Reports</a>
+                <a href="master.html">Master</a>
+                <a href="transactions.html">Transactions</a>
+                <a href="special_access.html">Special Access</a>
+                <a href="#" class="logout-link">Logout</a>
+            </nav>
+        </header>
+
+        <!-- Sidebar + Core Workspace Inner Layout Section -->
+        <div class="main-container">
+            
+            <!-- Left Side Control Sidebar Menu Drawer -->
+            <aside class="sidebar">
+                <div class="menu-title">Menu</div>
+                <nav class="nav-menu">
+                    <a href="home.html" id="nav-home" class="nav-item">🏠 Home</a>
+                    <a href="userarea.html" id="nav-userarea" class="nav-item">👤 User Area</a>
+                    <a href="reports.html" id="nav-reports" class="nav-item active">📊 Reports</a>
+                    <a href="master.html" id="nav-master" class="nav-item">🛠️ Master</a>
+                    <a href="transactions.html" id="nav-transactions" class="nav-item">🔄 Transactions</a>
+                    <a href="special_access.html" id="nav-special" class="nav-item">🔑 Special Access</a>
+                    <a href="#" id="nav-logout" class="nav-item logout">🔓 Logout</a>
+                </nav>
+            </aside>
+            <!-- Main Workspace Gray Canvas (Viewport Locked & Non-Scrollable) -->
+            <main class="submaster-panel">
+                
+                <!-- Section Headings -->
+                <div class="submaster-titles-row">
+                    <h2 class="txt-master-main">REPORTS</h2>
+                    <h3 class="txt-submaster-accent">DEPTWISE VIEW</h3>
+                </div>
+
+                <!-- Upper Table Context Summary Label Description -->
+                <div class="report-table-caption">
+                    ASSET DETAIL SUMMARY BASED ON ASSET DECLARED BY DEPARTMENT
+                </div>
+
+                <!-- Primary Department Summary Table Grid Frame -->
+                <div class="submaster-table-frame reports-table-frame">
+                    <table class="records-data-table">
+                        <thead>
+                            <tr>
+                                <th>#SR</th>
+                                <th>DEPARTMENT</th>
+                                <th>HOD/INCHARGE</th>
+                                <th>IT AMBASSADOR</th>
+                                <th>TOTAL QTY</th>
+                                <th>RECEIVED ON</th>
+                                <th>UPDATED ON</th>
+                                <th>STATUS</th>
+                                <th>REMARK</th>
+                            </tr>
+                        </thead>
+                        <tbody id="deptwiseReportsTableBody">
+                            <!-- डेटाबेस से आई हुई 12 रोज़ यहाँ अपने आप भर जाएँगी -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Footer Navigation Back Row Button -->
+                <div class="back-btn-row">
+                    <a href="reports.html" class="btn-submaster-back"> Back</a>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+            <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tableBody = document.getElementById('deptwiseReportsTableBody');
+            
+            // [URL MATCHING FIX]: इसे बिल्कुल नए लाइव डायरेक्ट रेंडर पाथ से मैच किया
+            fetch('/api/reports/deptwise-live')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Server error');
+                    }
+                    return response.json();
+                })
+                .then(res => {
+                    if (res.success && tableBody) {
+                        // डेटाबेस से बना-बनाया HTML सीधे आपके टेबल के अंदर इंजेक्ट हो जाएगा
+                        tableBody.innerHTML = res.html;
+                    } else {
+                        throw new Error('Data empty');
+                    }
+                })
+                .catch(err => {
+                    console.error('Error Details:', err);
+                    if (tableBody) {
+                        tableBody.innerHTML = '<tr><td colspan="9" style="color: red; text-align: center; padding: 20px;">❌ Failed to establish communication pipeline with SQL Department records.</td></tr>';
+                    }
+                });
+        });
+    </script>
+
+
+
+</body>
+</html>

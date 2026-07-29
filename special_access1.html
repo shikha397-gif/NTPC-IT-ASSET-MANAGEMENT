@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Details Self - IT Assets Management</title>
+    <link rel="stylesheet" href="home.css">
+    
+    <!-- वन-पेज नॉन-स्क्रॉलिंग और सुंदर क्रेडेंशियल कार्ड के लिए CSS स्टाइलिंग -->
+    <style>
+        html, body, .app-wrap {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .main-container {
+            display: flex;
+            height: calc(100vh - 60px);
+            width: 100%;
+        }
+
+        .submaster-panel {
+            flex: 1;
+            padding: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            background-color: #0d1b2a;
+            box-sizing: border-box;
+        }
+
+        /* प्रोफाइल कार्ड का मुख्य डार्क फ्रेम */
+        .profile-matrix-card {
+            background-color: #0b132b;
+            border: 1px solid #1c2541;
+            border-radius: 6px;
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-sizing: border-box;
+            max-width: 700px;
+            margin: 0 auto;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        .matrix-header {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #00b4d8;
+            border-bottom: 1px solid #1c2541;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .matrix-grid-fields {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px 25px;
+            flex-grow: 1;
+        }
+
+        .matrix-field-block {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            background-color: #1c2541;
+            padding: 10px 15px;
+            border-radius: 4px;
+            border-left: 4px solid #00b4d8;
+        }
+
+        .matrix-label {
+            font-size: 0.75rem;
+            color: #a0aec0;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .matrix-value {
+            font-size: 0.95rem;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .full-width-block {
+            grid-column: span 2;
+            border-left-color: #ff5722; /* प्रिविलेज के लिए ऑरेंज कलर */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Full-Screen Layout Wrapper Container -->
+    <div class="app-wrap">
+        
+        <!-- Top Branding Header Navigation Banner -->
+        <header class="top-header">
+            <div class="header-title">Dashboard of IT Assets Management</div>
+            <div class="header-buttons">
+                <button id="headerBtnHelp" class="btn btn-secondary">Help</button>
+                <button id="headerBtnSettings" class="btn btn-secondary">Settings</button>
+                <button id="headerBtnLogin" class="btn btn-primary">Login</button>
+            </div>
+        </header>
+
+        <!-- Sidebar + Core Workspace Inner Layout Section -->
+        <div class="main-container">
+            
+            <!-- Left Side Control Sidebar Menu Drawer -->
+            <aside class="sidebar">
+                <div class="logo-container">
+                    <img src="ntpc logo.png" alt="NTPC Logo" class="sidebar-logo">
+                </div>
+                <nav class="nav-menu">
+                    <a href="home.html" id="nav-home" class="nav-item">Home</a>
+                    <a href="userarea.html" id="nav-userarea" class="nav-item">User Area</a>
+                    <a href="reports.html" id="nav-reports" class="nav-item">Reports</a>
+                    <a href="master.html" id="nav-master" class="nav-item">Master</a>
+                    <a href="transactions.html" id="nav-transactions" class="nav-item">Transactions</a>
+                    <a href="special_access.html" id="nav-special" class="nav-item active">Special Access</a>
+                    <a href="#" id="nav-logout" class="nav-item logout">Logout</a>
+                </nav>
+            </aside>            <!-- Main Workspace Canvas (Viewport Locked & Non-Scrollable) -->
+            <main class="submaster-panel">
+                
+                <!-- Section Headings -->
+                <div style="flex-shrink: 0; margin-bottom: 15px; text-align: center;">
+                    <h2 style="color: #ffffff; font-size: 1.6rem; margin: 0;">SPECIAL ACCESS</h2>
+                    <h3 style="color: #00b4d8; font-size: 1rem; margin: 2px 0 0 0; font-weight: bold; letter-spacing: 0.5px;">OFFICER CREDENTIAL VALIDATION</h3>
+                </div>
+
+                <!-- Main Profile Matrix Sheet Container Card -->
+                <div class="profile-matrix-card">
+                    <div class="matrix-header">👤 Secure Vault Profile Directory</div>
+                    
+                    <div class="matrix-grid-fields">
+                        <!-- Field 1: Officer Name -->
+                        <div class="matrix-field-block">
+                            <span class="matrix-label">OFFICER / ENGINEER NAME</span>
+                            <span id="profName" class="matrix-value">Loading...</span>
+                        </div>
+
+                        <!-- Field 2: Designation -->
+                        <div class="matrix-field-block">
+                            <span class="matrix-label">OFFICIAL DESIGNATION</span>
+                            <span id="profDesig" class="matrix-value">Loading...</span>
+                        </div>
+
+                        <!-- Field 3: Access Level Security Badge -->
+                        <div class="matrix-field-block">
+                            <span class="matrix-label">SYSTEM ACCESS PERMISSION LEVEL</span>
+                            <span id="profLevel" class="matrix-value" style="color: #00b4d8;">Loading...</span>
+                        </div>
+
+                        <!-- Field 4: Vault Security Key ID -->
+                        <div class="matrix-field-block">
+                            <span class="matrix-label">VAULT PASSKEY / SECURITY ID</span>
+                            <span id="profKey" class="matrix-value" style="color: #ff5722;">Loading...</span>
+                        </div>
+
+                        <!-- Field 5: System Login Status Tracking -->
+                        <div class="matrix-field-block">
+                            <span class="matrix-label">CURRENT GATEWAY SESSION STATUS</span>
+                            <span id="profStatus" class="matrix-value">Loading...</span>
+                        </div>
+
+                        <!-- Field 6: Access Privileges Full Width Container Block -->
+                        <div class="matrix-field-block full-width-block">
+                            <span class="matrix-label">ASSIGNED MASTER SYSTEM PRIVILEGES & DATA CONTROL RIGHTS</span>
+                            <span id="profPriv" class="matrix-value" style="color: #00ffcc; font-size: 0.9rem; line-height: 1.4;">Loading...</span>
+                        </div>
+                    </div>
+
+                    <!-- Inside Matrix Notice Caption Banner Line -->
+                    <div style="font-size: 0.75rem; color: #a0aec0; text-align: center; margin-top: 15px; border-top: 1px solid #1c2541; padding-top: 10px;">
+                        🔐 Data encryption pipeline verified. Session monitored under NTPC Cyber Network Governance.
+                    </div>
+                </div>
+
+                <!-- Footer Navigation Back Row Button -->
+                <div class="back-btn-row" style="text-align: center; margin-top: 15px; flex-shrink: 0;">
+                    <a href="special_access.html" class="btn-submaster-back" style="display: inline-block; background-color: #1c2541; color: #ffffff; text-decoration: none; padding: 10px 24px; border-radius: 4px; font-size: 0.85rem; font-weight: bold; border: 1px solid #1c2541; cursor: pointer;">⬅ Return to Gateway</a>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- ऑटो-लोड जावास्क्रिप्ट लॉजिक (सुरक्षित और टाइमस्टैम्प कैश बाईपास के साथ) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // [CACHE BYPASS ENGINE]
+            const timestamp = new Date().getTime();
+            
+            // नोड सर्वर के नए स्पेशल प्रोफाइल API को कॉल करना
+            fetch(`/api/special/self-profile?v=${timestamp}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Database response matrix failed');
+                    }
+                    return response.json();
+                })
+                .then(res => {
+                    if (res.success && res.data && res.data.length > 0) {
+                        const record = res.data[0]; // पहले रिकॉर्ड को एरे से निकालना
+                        
+                        // डेटाबेस से आई हुई वैल्यूज को सीधे स्क्रीन पर सजाना
+                        document.getElementById('profName').innerText = record.OfficerName || '-';
+                        document.getElementById('profDesig').innerText = record.Designation || '-';
+                        document.getElementById('profLevel').innerText = record.AccessLevel || '-';
+                        document.getElementById('profKey').innerText = record.SecurityKey || '-';
+                        document.getElementById('profPriv').innerText = record.AssignedPrivilege || '-';
+                        
+                        // लॉगिन स्टेटस का रंग खुद-ब-खुद बदलना (हरा या लाल)
+                        const statusElement = document.getElementById('profStatus');
+                        if (statusElement) {
+                            statusElement.innerText = record.LastLoginStatus || '-';
+                            statusElement.style.color = record.LastLoginStatus === 'Active Now' ? '#00ffcc' : '#ff4444';
+                        }
+                        console.log("✅ Secure Officer credential matrix successfully loaded from SQL Server.");
+                    } else {
+                        throw new Error('Empty dataset received');
+                    }
+                })
+                .catch(err => {
+                    console.error('Error fetching officer self profile:', err);
+                    alert('❌ Failed to establish encrypted communication pipeline with Security Matrix.');
+                });
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dues Pending Report - IT Assets Management</title>
+    <link rel="stylesheet" href="home.css">
+    
+    <!-- आपकी बेस थीम के साथ 100% कंपैटिबल नॉन-स्क्रॉल लेआउट CSS -->
+    <style>
+        /* पूरे व्यूपोर्ट को लॉक करना ताकि मेन स्क्रीन स्क्रॉल न हो */
+        html, body, .app-wrap {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .main-container {
+            display: flex;
+            height: calc(100vh - 60px);
+            width: 100%;
+        }
+
+        .submaster-panel {
+            flex: 1;
+            padding: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            background-color: #0d1b2a;
+            box-sizing: border-box;
+        }
+
+        .submaster-titles-row, .report-table-caption {
+            flex-shrink: 0;
+        }
+
+        /* केवल टेबल फ्रेम के अंदर स्मूथ इनसाइड स्क्रॉल बार एक्टिव करना */
+        .reports-table-frame {
+            background-color: #0b132b;
+            border: 1px solid #1c2541;
+            border-radius: 6px;
+            padding: 10px;
+            flex: 1;
+            overflow-y: auto; 
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        /* स्क्रोलबार को डार्क थीम के हिसाब से पतला और प्रोफेशनल बनाना */
+        .reports-table-frame::-webkit-scrollbar {
+            width: 6px;
+        }
+        .reports-table-frame::-webkit-scrollbar-track {
+            background: #0b132b;
+        }
+        .reports-table-frame::-webkit-scrollbar-thumb {
+            background: #1c2541;
+            border-radius: 10px;
+        }
+        .reports-table-frame::-webkit-scrollbar-thumb:hover {
+            background: #0077b6;
+        }
+
+        .back-btn-row {
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Full-Screen Layout Wrapper Container -->
+    <div class="app-wrap">
+        
+        <!-- Top Branding Header Navigation Banner -->
+        <header class="app-branding-header">
+            <h1>IT ASSETS MANAGEMENT</h1>
+            <!-- Horizontal Quick Access Navbar Links Matrix -->
+            <nav class="horizontal-navbar">
+                <a href="home.html">Home</a>
+                <a href="userarea.html">User Area</a>
+                <a href="reports.html" class="active">Reports</a>
+                <a href="master.html">Master</a>
+                <a href="transactions.html">Transactions</a>
+                <a href="special_access.html">Special Access</a>
+                <a href="#" class="logout-link">Logout</a>
+            </nav>
+        </header>
+
+        <!-- Sidebar + Core Workspace Inner Layout Section -->
+        <div class="main-container">
+            
+            <!-- Left Side Control Sidebar Menu Drawer -->
+            <aside class="sidebar">
+                <div class="logo-container">
+                    <img src="ntpc logo.png" alt="NTPC Logo" class="sidebar-logo">
+                </div>
+                <nav class="nav-menu">
+                    <a href="home.html" id="nav-home" class="nav-item">🏠 Home</a>
+                    <a href="userarea.html" id="nav-userarea" class="nav-item">👤 User Area</a>
+                    <a href="reports.html" id="nav-reports" class="nav-item active">📊 Reports</a>
+                    <a href="master.html" id="nav-master" class="nav-item">🛠️ Master</a>
+                    <a href="transactions.html" id="nav-transactions" class="nav-item">🔄 Transactions</a>
+                    <a href="special_access.html" id="nav-special" class="nav-item">🔑 Special Access</a>
+                    <a href="#" id="nav-logout" class="nav-item logout">🔓 Logout</a>
+                </nav>
+            </aside>
+ <!-- Main Workspace Canvas (Viewport Locked & Non-Scrollable) -->
+            <main class="submaster-panel">
+                
+                <!-- Section Headings -->
+                <div class="submaster-titles-row">
+                    <h2 class="txt-master-main">REPORTS</h2>
+                    <h3 class="txt-submaster-accent" style="color: #ff4444;">DUES PENDING VIEW</h3>
+                </div>
+
+                <!-- Upper Table Context Summary Label Description -->
+                <div class="report-table-caption" style="color: #a0aec0; font-size: 0.85rem; margin-bottom: 10px;">
+                    ⚠️ LIST OF EMPLOYEES AWAITING IT HARDWARE RECOVERY / NO DUES CLEARANCE (NDC)
+                </div>
+
+                <!-- Primary Department Summary Table Grid Frame -->
+                <div class="submaster-table-frame reports-table-frame">
+                    <table class="records-data-table" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>#SR</th>
+                                <th>EMPLOYEE ID</th>
+                                <th>EMPLOYEE NAME</th>
+                                <th>DEPARTMENT</th>
+                                <th>PENDING ASSET</th>
+                                <th>ASSET SERIAL NO.</th>
+                                <th>TRANSFER/RETIRE DATE</th>
+                                <th>STATUS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="duesPendingTableBody">
+                            <!-- डेटाबेस से आई हुई लाइव रोज़ यहाँ अपने आप भर जाएँगी -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Footer Navigation Back Row Button -->
+                <div class="back-btn-row">
+                    <a href="reports.html" class="btn-submaster-back"> Back</a>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+        <!-- ऑटो-लोड जावास्क्रिप्ट लॉजिक (सुरक्षित और केस-इंसेंसिटिव) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tableBody = document.getElementById('duesPendingTableBody');
+            
+            // [CORS & CACHE BYPASS]: यूआरएल के अंत में टाइमस्टैम्प जोड़ने से ब्राउज़र पुराना कैश भूल जाता है
+            const timestamp = new Date().getTime();
+            const targetUrl = `/api/reports/dues-live?v=${timestamp}`;
+
+            fetch(targetUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Server returned error status');
+                    }
+                    return response.json();
+                })
+                .then(res => {
+                    if (tableBody && res.success) {
+                        // डेटाबेस से बना-बनाया HTML सीधे आपके टेबल के अंदर इंजेक्ट हो जाएगा
+                        tableBody.innerHTML = res.html;
+                        console.log("✅ Dues Pending records successfully loaded into report matrix.");
+                    } else {
+                        // अगर बैकएंड से डायरेक्ट HTML नहीं मिला, तो फ्रंटएंड पर ही सेफ रेंडरिंग करना
+                        const data = res.data || res;
+                        if (!Array.isArray(data) || data.length === 0) {
+                            tableBody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding:20px;">✅ No IT Dues Pending in the system! All cleared.</td></tr>';
+                            return;
+                        }
+
+                        let htmlRows = '';
+                        data.forEach((row, index) => {
+                            // कॉलम के नाम छोटे या बड़े अक्षरों में हों, यह दोनों को संभाल लेगा
+                            const empId = row.EmployeeID || row.EMPLOYEEID || row.employeeId || '-';
+                            const empName = row.EmployeeName || row.EMPLOYEENAME || row.employeeName || '-';
+                            const dept = row.Department || row.DEPARTMENT || row.department || '-';
+                            const asset = row.PendingAsset || row.PENDINGASSET || row.pendingAsset || '-';
+                            const serial = row.AssetSerialNo || row.ASSETSERIALNO || row.assetSerialNo || '-';
+                            const date = row.TransferRetireDate || row.TRANSFERRETIREDATE || row.transferRetireDate || '-';
+                            const action = row.ActionRequired || row.ACTIONREQUIRED || row.actionRequired || 'Pending Recovery';
+
+                            htmlRows += `
+                                <tr>
+                                    <td>${index + 1}</td>
+                                    <td style="color: #ff4444; font-weight: bold;">${empId}</td>
+                                    <td style="color: #ffffff; font-weight: bold;">${empName}</td>
+                                    <td>${dept}</td>
+                                    <td style="color: #00b4d8;">${asset}</td>
+                                    <td>${serial}</td>
+                                    <td style="color: #ff5722;">${date}</td>
+                                    <td>
+                                        <span style="background-color: #2a1b1b; color: #ff4444; padding: 3px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; border: 1px solid #ff4444;">
+                                            ${action}
+                                        </span>
+                                    </td>
+                                </tr>
+                            `;
+                        });
+                        tableBody.innerHTML = htmlRows;
+                    }
+                })
+                .catch(err => {
+                    console.error('Error populating dues pending data:', err);
+                    if (tableBody) {
+                        tableBody.innerHTML = '<tr><td colspan="8" style="color: red; text-align: center; padding: 20px;">❌ Failed to establish communication pipeline with SQL Dues Pending records.</td></tr>';
+                    }
+                });
+        });
+    </script>
+</body>
+</html>

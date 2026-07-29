@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports Console - IT Assets Management</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+    <!-- Main Full-Screen Layout Wrapper Container -->
+    <div class="app-wrap">
+        
+        <!-- Top Branding Header Navigation Banner -->
+        <header class="app-branding-header">
+            <h1>IT ASSETS MANAGEMENT</h1>
+            <!-- Horizontal Quick Access Navbar Links -->
+            <nav class="horizontal-navbar">
+                <a href="home.html">Home</a>
+                <a href="userarea.html">User Area</a>
+                <a href="reports.html" class="active">Reports</a>
+                <a href="master.html">Master</a>
+                <a href="transactions.html">Transactions</a>
+                <a href="special_access.html">Special Access</a>
+                <a href="#" class="logout-link">Logout</a>
+            </nav>
+        </header>
+
+        <!-- Sidebar + Core Workspace Inner Layout Section -->
+        <div class="main-container">
+            
+            <!-- Left Side Control Sidebar Menu Drawer -->
+            <aside class="sidebar">
+                <div class="menu-title">Menu</div>
+                <nav class="nav-menu">
+                    <a href="home.html" id="nav-home" class="nav-item">🏠 Home</a>
+                    <a href="userarea.html" id="nav-userarea" class="nav-item">👤 User Area</a>
+                    <a href="reports.html" id="nav-reports" class="nav-item active">📊 Reports</a>
+                    <a href="master.html" id="nav-master" class="nav-item">🛠️ Master</a>
+                    <a href="transactions.html" id="nav-transactions" class="nav-item">🔄 Transactions</a>
+                    <a href="special_access.html" id="nav-special" class="nav-item">🔑 Special Access</a>
+                    <a href="#" id="nav-logout" class="nav-item logout">🔓 Logout</a>
+                </nav>
+            </aside>
+
+            <!-- Main Workspace Gray Canvas (Viewport Locked & Non-Scrollable) -->
+            <main class="submaster-panel">
+                
+                <!-- Section Headings -->
+                <div class="submaster-titles-row">
+                    <h2 class="txt-master-main">REPORTS</h2>
+                    <h3 class="txt-submaster-accent">OVERALL VIEW</h3>
+                </div>
+
+                <!-- Primary Inventory Summary Table Grid Frame -->
+                <div class="submaster-table-frame reports-table-frame">
+                    <table class="records-data-table">
+                        <thead>
+                            <tr>
+                                <th>#SR</th>
+                                <th>ASSET TYPE</th>
+                                <th>MAKE MODEL(LOT NO.)</th>
+                                <th>PO QTY.</th>
+                                <th>ACTIVE QTY.(DISPOSED QTY.)</th>
+                                <th>TYPE TOTAL</th>
+                            </tr>
+                        </thead>
+                        <tbody id="overallReportsTableBody">
+                            <!-- Left completely empty ready for backend dynamic data fetch loop array injection -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Footer Navigation Back Row Button -->
+                <div class="back-btn-row">
+                    <a href="reports.html" class="btn-submaster-back"> Back</a>
+                </div>
+
+            </main>
+        </div>
+    </div>
+    <!-- पेज लोड होते ही डेटाबेस से ओवरऑल रिपोर्ट लोड करने का कोड -->
+        <!-- डेटाबेस से ओवरऑल रिपोर्ट लोड करने का सुरक्षित कोड -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tableBody = document.getElementById('overallReportsTableBody');
+            
+            // डेटा फेच करने की सुरक्षित रूट
+            fetch('/api/reports/overall')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Database response error');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (!tableBody) return;
+                    tableBody.innerHTML = ''; // टेबल को साफ़ करें
+
+                    if (data.length === 0) {
+                        tableBody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:20px;">No reporting data found in SQL Server.</td></tr>';
+                        return;
+                    }
+
+                    // लूप चलाकर डेटा ग्रिड में भरना
+                    data.forEach((row, index) => {
+                        const tr = `
+                            <tr>
+                                <td>${index + 1}</td>
+                                <td style="color: white; font-weight: bold;">${row.AssetType || '-'}</td>
+                                <td>${row.MakeModelLot || '-'}</td>
+                                <td style="color: #00b4d8;">${row.PoQty !== undefined ? row.PoQty : '-'}</td>
+                                <td>
+                                    ${row.ActiveQty !== undefined ? row.ActiveQty : '-'} 
+                                    <span style="color: #ff5722; font-weight: bold;">(${row.DisposedQty !== undefined ? row.DisposedQty : '0'})</span>
+                                </td>
+                                <td style="color: #00ffcc; font-weight: bold;">${row.TypeTotal !== undefined ? row.TypeTotal : '-'}</td>
+                            </tr>
+                        `;
+                        tableBody.innerHTML += tr;
+                    });
+                })
+                .catch(err => {
+                    console.error('Error rendering rows:', err);
+                    if (tableBody) {
+                        tableBody.innerHTML = '<tr><td colspan="6" style="color: red; text-align: center; padding: 20px;">❌ Failed to populate data from database matrix.</td></tr>';
+                    }
+                });
+        });
+    </script>
+
+
+    
+</body>
+</html>

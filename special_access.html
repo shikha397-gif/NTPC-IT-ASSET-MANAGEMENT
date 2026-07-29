@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Access Gateway - IT Assets Management</title>
+    <link rel="stylesheet" href="home.css">
+    
+    <!-- आपकी बेस थीम के साथ 100% कंपैटिबल नॉन-स्क्रॉल लेआउट और पॉइंटर कर्सर स्टाइलिंग -->
+    <style>
+        html, body, .app-wrap {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        /* कार्ड्स पर माउस ले जाने पर हाथ का निशान (Pointer) दिखाने के लिए */
+        .special-card {
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .special-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 180, 216, 0.25);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Header Navigation -->
+    <header class="top-header">
+        <div class="header-title">Dashboard of IT Assets Management</div>
+        <div class="header-buttons">
+            <button id="headerBtnHelp" class="btn btn-secondary">Help</button>
+            <button id="headerBtnSettings" class="btn btn-secondary">Settings</button>
+           
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo-container">
+                <img src="ntpc logo.png" alt="NTPC Logo" class="sidebar-logo">
+            </div>
+            <nav class="nav-menu">
+                <a href="home.html" id="nav-home" class="nav-item">Home</a>
+                <a href="userarea.html" id="nav-userarea" class="nav-item">User Area</a>
+                <a href="reports.html" id="nav-reports" class="nav-item">Reports</a>
+                <a href="master.html" id="nav-master" class="nav-item">Master</a>
+                <a href="transactions.html" id="nav-transactions" class="nav-item">Transactions</a>
+                <a href="special_access.html" id="nav-special" class="nav-item active">Special Access</a>
+                <a href="#" id="nav-logout" class="nav-item logout">Logout</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Panel (Viewport Locked & Non-Scrollable) -->
+        <main class="special-panel" style="flex: 1; display: flex; flex-direction: column; overflow: hidden;">
+            
+            <!-- Top Banner Header -->
+            <div class="special-banner">
+                <div class="banner-info">
+                    <span class="vault-badge">VAULT SECURITY ACTIVE</span>
+                    <h2 class="banner-heading">Special Access Gateway</h2>
+                    <p class="banner-subtext">Manage secure credential overrides, inspect self-profile credentials, and dynamically re-verify multi-factor mobile link nodes.</p>
+                </div>
+                <div class="banner-actions">
+                    <button id="btnSecurityLog" class="btn-security-log">Security Log</button>
+                </div>
+            </div>
+
+            <!-- 3-Column Special Access Card Layout -->
+            <div class="special-grid" style="flex: 1; margin-top: 10px;">
+                
+                <!-- Card 1: EMP DETAILS (SELF) -> Links directly to special_access1.html -->
+                <div id="cardSpecialEmp" class="special-card" style="background: linear-gradient(rgba(15, 23, 42, 0.45), rgba(15, 23, 42, 0.8)), url('m3.jpg') center/cover no-repeat;">
+                    <span class="special-label">EMP DETAILS (SELF)</span>
+                </div>
+
+                <!-- Card 2: UPDATE MOBILE X -> Links directly to special_access2.html -->
+                <div id="cardSpecialMobile" class="special-card" style="background: linear-gradient(rgba(15, 23, 42, 0.45), rgba(15, 23, 42, 0.8)), url('t2.avif') center/cover no-repeat;">
+                    <span class="special-label">UPDATE MOBILE X</span>
+                </div>
+
+                <!-- Card 3: CHANGE PASSWORD -> Links directly to special_access3.html -->
+                <div id="cardSpecialPass" class="special-card" style="background: linear-gradient(rgba(15, 23, 42, 0.45), rgba(15, 23, 42, 0.8)), url('computer3.jpg') center/cover no-repeat;">
+                    <span class="special-label">CHANGE PASSWORD</span>
+                </div>
+
+            </div>
+        </main>
+    </div>
+    <!-- इन-पेज राउटिंग और नेविगेशन कंट्रोलर जावास्क्रिप्ट इंजन -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. पहले कार्ड (EMP DETAILS SELF) का क्लिक इवेंट लिस्नर
+            const cardEmp = document.getElementById('cardSpecialEmp');
+            if (cardEmp) {
+                cardEmp.addEventListener('click', function() {
+                    window.location.href = 'special_access1.html';
+                });
+            }
+
+            // 2. दूसरे कार्ड (UPDATE MOBILE X) का क्लिक इवेंट लिस्नर
+            const cardMobile = document.getElementById('cardSpecialMobile');
+            if (cardMobile) {
+                cardMobile.addEventListener('click', function() {
+                    window.location.href = 'special_access2.html';
+                });
+            }
+
+            // 3. तीसरे कार्ड (CHANGE PASSWORD) का क्लिक इवेंट लिस्नर
+            const cardPass = document.getElementById('cardSpecialPass');
+            if (cardPass) {
+                cardPass.addEventListener('click', function() {
+                    window.location.href = 'special_access3.html';
+                });
+            }
+
+            // 4. सिक्योरिटी लॉग (Security Log) बटन का इवेंट लिस्नर (भविष्य के लिए)
+            const btnLog = document.getElementById('btnSecurityLog');
+            if (btnLog) {
+                btnLog.addEventListener('click', function() {
+                    alert("🔒 Security Ledger Authentication Mode Pending Connection.");
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Area - IT Assets Management</title>
+    <link rel="stylesheet" href="home.css">
+
+    <!-- सर्च बार के लिए CSS इसी फ़ाइल में (ताकि home.css को बदलना न पड़े) -->
+    <style>
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 15px 0 25px 0;
+            background: #1e252b; /* डार्क बैकग्राउंड थीम से मैच करता हुआ */
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #2d3741;
+        }
+
+        .search-label {
+            color: #00ffcc; /* आपके 'IT ASSET'S YOUR NAME' वाले नियॉन ग्रीन कलर से मैचिंग */
+            font-size: 14px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .search-input {
+            background-color: #2a3540;
+            border: 1px solid #455669;
+            color: #ffffff;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 280px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: #00ffcc; /* फोकस होने पर नियॉन ग्रीन बॉर्डर */
+        }
+
+        .btn-search {
+            background-color: #00a86b; /* सुंदर हरा सर्च बटन */
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-search:hover {
+            background-color: #00c981; /* होवर करने पर थोड़ा लाइट ग्रीन */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Full-Screen Layout Wrapper Container -->
+    <div class="app-wrap">
+        
+        <!-- Top Branding Header Navigation Banner -->
+        <header class="app-branding-header">
+            <h1>IT ASSETS MANAGEMENT</h1>
+            <!-- Horizontal Quick Access Navbar Links -->
+            <nav class="horizontal-navbar">
+                <a href="home.html">Home</a>
+                <a href="userarea.html" class="active">User Area</a>
+                <a href="reports.html">Reports</a>
+                <a href="master.html">Master</a>
+                <a href="transactions.html">Transactions</a>
+                <a href="special_access.html">Special Access</a>
+                <a href="#" class="logout-link">Logout</a>
+            </nav>
+        </header>
+
+        <!-- Sidebar + Core Workspace Inner Layout Section -->
+        <div class="main-container">
+            
+            <!-- Left Side Control Sidebar Menu Drawer -->
+            <aside class="sidebar">
+                <div class="menu-title">Menu</div>
+                <nav class="nav-menu">
+                    <a href="home.html" id="nav-home" class="nav-item">🏠 Home</a>
+                    <a href="userarea.html" id="nav-userarea" class="nav-item active">👤 User Area</a>
+                    <a href="reports.html" id="nav-reports" class="nav-item">📊 Reports</a>
+                    <a href="master.html" id="nav-master" class="nav-item">🛠️ Master</a>
+                    <a href="transactions.html" id="nav-transactions" class="nav-item">🔄 Transactions</a>
+                    <a href="special_access.html" id="nav-special" class="nav-item">🔑 Special Access</a>
+                    <a href="#" id="nav-logout" class="nav-item logout">🔓 Logout</a>
+                </nav>
+            </aside>
+
+            <!-- Main Workspace Gray Canvas (Viewport Locked & Non-Scrollable) -->
+            <main class="submaster-panel">
+                
+                <!-- Section Headings -->
+                <div class="submaster-titles-row">
+                    <h2 class="txt-master-main">USER AREA</h2>
+                    <h3 class="txt-submaster-accent">IT ASSET'S YOUR NAME</h3>
+                </div>
+
+                <!-- नया जोड़ा गया सर्च बार (Search Bar Component) -->
+               <!-- नया फ़ॉर्म सबमिशन लेआउट -->
+<div class="search-container">
+    <label class="search-label" for="empSearchInput">🔍 ENTER EMPLOYEE ID / TICKET NO:</label>
+    <input type="text" id="empSearchInput" class="search-input" placeholder="e.g. 100245 or Amit Kumar">
+    <button type="button" id="btnEmpSearch" class="btn-search">Search</button>
+</div>
+
+
+
+                <!-- Individual Owner Context Information Box -->
+                <div class="userarea-owner-card">
+                    <table class="owner-context-table">
+                        <thead>
+                            <tr>
+                                <th>NAME</th>
+                                <th>DEPARTMENT</th>
+                                <th>HOD/INCHARGE</th>
+                                <th>IT AMBASSADOR</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><!-- Backend shifts dynamic name text here --></td>
+                                <td><!-- Backend shifts dynamic department text here --></td>
+                                <td><!-- Backend shifts dynamic HOD text here --></td>
+                                <td><!-- Backend shifts dynamic ambassador text here --></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Primary Asset Records Table Matrix Frame -->
+                <div class="submaster-table-frame user-table-frame">
+                    <table class="records-data-table">
+                        <thead>
+                            <tr>
+                                <th>#SR</th>
+                                <th>ASSET SR./NO.</th>
+                                <th>ASSET TYPE</th>
+                                <th>ASSET NAME/MODEL</th>
+                                <th>OBSOLETE FLAG</th>
+                                <th>OBSOLETE DATE</th>
+                                <th>ASSET SPECIFICATION</th>
+                                <th>REMARK</th>
+                            </tr>
+                        </thead>
+                        <tbody id="userAssetTableBody">
+                            <!-- Left completely empty ready for backend dynamic data collection loops -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Footer Navigation Back Row Button -->
+                <div class="back-btn-row">
+                    <a href="userarea.html" class="btn-submaster-back"> Back</a>
+                </div>
+
+            </main>
+        </div>
+    </div>
+            <script>
+        document.getElementById('btnEmpSearch').addEventListener('click', function() {
+            const empId = document.getElementById('empSearchInput').value.trim();
+            
+            if (!empId) {
+                alert('Please enter an Employee ID / Ticket No.');
+                return;
+            }
+
+            // रिलेटिव पाथ - यह सबसे सुरक्षित तरीका है
+            fetch(`/api/search-asset/${empId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Employee not found');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // [CRITICAL FIX]: चूंकि डेटा एक एरे (लिस्ट) है, हमें [0] लगाना होगा
+                    const firstRecord = data[0]; 
+
+                    // 1. ऊपर वाले यूजर डिटेल्स टेबल में डेटा भरना
+                    const ownerTableBody = document.querySelector('.owner-context-table tbody tr');
+                    if (ownerTableBody) {
+                        ownerTableBody.innerHTML = `
+                            <td>${firstRecord.EmployeeName || '-'}</td>
+                            <td>${firstRecord.Department || '-'}</td>
+                            <td>${firstRecord.HodIncharge || '-'}</td>
+                            <td>${firstRecord.ItAmbassador || '-'}</td>
+                        `;
+                    }
+
+                    // 2. नीचे वाले एसेट ग्रिड टेबल में डेटा लूप चलाकर भरना
+                    const assetTableBody = document.getElementById('userAssetTableBody');
+                    if (assetTableBody) {
+                        assetTableBody.innerHTML = ''; // पुराना पुराना रिकॉर्ड साफ़ करना
+
+                        data.forEach((asset, index) => {
+                            const row = `
+                                <tr>
+                                    <td>${index + 1}</td>
+                                    <td>${asset.AssetSerialNo || '-'}</td>
+                                    <td>${asset.AssetType || '-'}</td>
+                                    <td>${asset.AssetNameModel || '-'}</td>
+                                    <td>${asset.ObsoleteFlag || '-'}</td>
+                                    <td>${asset.ObsoleteDate || '-'}</td>
+                                    <td>${asset.AssetSpecification || '-'}</td>
+                                    <td>${asset.Remark || '-'}</td>
+                                </tr>
+                            `;
+                            assetTableBody.innerHTML += row;
+                        });
+                    }
+                })
+                .catch(err => {
+                    console.error('Error Details:', err);
+                    alert('No record found for this Employee ID in the system!');
+                });
+        });
+
+        // एंटर की सपोर्ट
+        document.getElementById('empSearchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('btnEmpSearch').click();
+            }
+        });
+    </script>
+
+
+</body>
+</html>

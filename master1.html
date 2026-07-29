@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Master (E) - IT Assets Management</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+    <!-- Main Application Container -->
+    <div class="app-wrap">
+        
+        <!-- Top Branding Header Banner -->
+        <header class="app-branding-header">
+            <h1>IT ASSETS MANAGEMENT</h1>
+            <!-- Horizontal Quick Access Navbar Links -->
+            <nav class="horizontal-navbar">
+                <a href="home.html">Home</a>
+                <a href="userarea.html">User Area</a>
+                <a href="reports.html">Reports</a>
+                <a href="master.html" class="active">Master</a>
+                <a href="transactions.html">Transactions</a>
+                <a href="special_access.html">Special Access</a>
+                <a href="#" class="logout-link">Logout</a>
+            </nav>
+        </header>
+
+        <!-- Sidebar + Core Workspace Inner Layout Section -->
+        <div class="main-container">
+            
+            <!-- Left Side Control Sidebar Menu Drawer -->
+            <aside class="sidebar">
+                <div class="menu-title">Menu</div>
+                <nav class="nav-menu">
+                    <a href="home.html" id="nav-home" class="nav-item">🏠 Home</a>
+                    <a href="userarea.html" id="nav-userarea" class="nav-item">👤 User Area</a>
+                    <a href="reports.html" id="nav-reports" class="nav-item">📊 Reports</a>
+                    <a href="master.html" id="nav-master" class="nav-item active">🛠️ Master</a>
+                    <a href="transactions.html" id="nav-transactions" class="nav-item">🔄 Transactions</a>
+                    <a href="special_access.html" id="nav-special" class="nav-item">🔑 Special Access</a>
+                    <a href="#" id="nav-logout" class="nav-item logout">🔓 Logout</a>
+                </nav>
+            </aside>
+
+            <!-- Main Workspace Gray Canvas (Viewport Locked & Non-Scrollable) -->
+            <main class="submaster-panel">
+                
+                <!-- Section Headings -->
+                <div class="submaster-titles-row">
+                    <h2 class="txt-master-main">MASTER</h2>
+                    <h3 class="txt-submaster-accent">ASSET MAST (E)</h3>
+                </div>
+
+                <!-- Form Control Card Block -->
+                <div class="submaster-form-card">
+                    <form id="assetMasterForm" class="grid-form-body">
+                        
+                        <!-- Row 1: 3 Input Columns -->
+                        <div class="form-row-three">
+                            <div class="form-group-block">
+                                <label>Asset ID</label>
+                                <input type="text" id="AssetID" class="input-control-blue" required>
+                            </div>
+                            <div class="form-group-block">
+                                <label>Asset Name</label>
+                                <input type="text" id="AssetName" class="input-control-blue" required>
+                            </div>
+                            <div class="form-group-block">
+                                <label>Type</label>
+                                <input type="text" id="Type" class="input-control-blue" required>
+                            </div>
+                        </div>
+
+                        <!-- Row 2: Status Dropdown + Submit Layout -->
+                        <div class="form-row-three align-bottom-row">
+                            <div class="form-group-block">
+                                <label>Status</label>
+                                <select id="Status" class="input-control-blue" required>
+                                    <option value="Available">Available</option>
+                                    <option value="Assigned">Assigned</option>
+                                    <option value="Maintenance">Maintenance</option>
+                                </select>
+                            </div>
+                            <div class="form-group-block button-cell-stretch span-two-columns">
+                                <button type="submit" class="btn-submit-green">Submit</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+                <!-- Data Records Grid Label Header -->
+                <div class="records-header-label">Asset Records</div>
+                
+                <!-- Asset Logs Dynamic Table Matrix Frame -->
+                <div class="submaster-table-frame">
+                    <table class="records-data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="Asset-Records-Table-Body">
+                            <!-- Populated dynamically by script execution -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Footer Navigation Row -->
+                <div class="back-btn-row">
+                    <a href="master.html" class="btn-submaster-back"> Back</a>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- =========================================================================
+         SYNCHRONIZED FRONTEND DATA CONTROLLER SCRIPT
+         ========================================================================= -->
+    <script>
+        const API_URL = '/api/assets';
+
+        // 1. Submit Form Data
+        document.getElementById('assetMasterForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const assetData = {
+                AssetID: document.getElementById('AssetID').value,
+                AssetName: document.getElementById('AssetName').value,
+                Type: document.getElementById('Type').value,
+                Status: document.getElementById('Status').value
+            };
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(assetData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    alert('Saved to SQL Server successfully!');
+                    document.getElementById('assetMasterForm').reset();
+                    fetchAssetRecords(); // Refresh the table right away
+                } else {
+                    alert('Database Error: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Submission connection failed:', error);
+                alert('Could not connect to the backend server.');
+            }
+        });
+
+        // 2. Fetch and Display Records
+        async function fetchAssetRecords() {
+            const tableBody = document.querySelector('.Asset-Records-Table-Body');
+            if (!tableBody) return;
+
+            try {
+                const response = await fetch(API_URL);
+                if (!response.ok) throw new Error('Could not pull master list');
+
+                const databaseRows = await response.json();
+                tableBody.innerHTML = ''; 
+
+                if (databaseRows.length === 0) {
+                    tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 15px; color: #aaa;">No active records saved yet.</td></tr>`;
+                    return;
+                }
+
+                databaseRows.forEach(asset => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${asset.Asset_ID || ''}</td>
+                        <td>${asset.Asset_Name || ''}</td>
+                        <td>${asset.Asset_Type || ''}</td>
+                        <td>${asset.Status_Flag || ''}</td>
+                        <td>
+                            <button onclick="deleteAsset('${asset.Asset_ID}')" style="background: #e74c3c; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">Delete</button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Error fetching table view:', error);
+                tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center; color: #ff6b6b; padding: 15px;">Error loading data from SQL Server.</td></tr>`;
+            }
+        }
+
+        // 3. Delete Record Logic
+        async function deleteAsset(assetId) {
+            if (!confirm(`Are you sure you want to delete Asset ID: ${assetId}?`)) return;
+
+            try {
+                const response = await fetch(`${API_URL}/${assetId}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    fetchAssetRecords(); // Refresh table view
+                } else {
+                    const result = await response.json();
+                    alert('Delete failed: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Error deleting asset:', error);
+            }
+        }
+
+        // Run fetch automatically when page finishes loading
+        window.addEventListener('DOMContentLoaded', fetchAssetRecords);
+    </script>
+</body>
+</html>

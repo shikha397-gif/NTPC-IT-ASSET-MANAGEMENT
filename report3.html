@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Form - IT Assets Management</title>
+    <link rel="stylesheet" href="home.css">
+    
+    <!-- वन-पेज नॉन-स्क्रॉलिंग और रिस्पॉन्सिव ग्रिड लेआउट फिक्स करने के लिए CSS -->
+    <style>
+        html, body, .app-wrap {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .main-container {
+            display: flex;
+            height: calc(100vh - 60px);
+            width: 100%;
+        }
+
+        .submaster-panel {
+            flex: 1;
+            padding: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        .submaster-titles-row {
+            flex-shrink: 0;
+            margin-bottom: 15px;
+        }
+
+        /* फॉर्म और रिजल्ट कंटेनर की फिक्स हाइट सेटिंग्स */
+        .filter-form-wrapper {
+            background-color: #0b132b;
+            border: 1px solid #1c2541;
+            border-radius: 6px;
+            padding: 20px;
+            flex: 1;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+
+        /* रिजल्ट टेबल फ्रेम के लिए अंदरूनी स्क्रॉल */
+        .result-table-frame {
+            flex: 1;
+            overflow-y: auto;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+
+        .result-table-frame::-webkit-scrollbar {
+            width: 6px;
+        }
+        .result-table-frame::-webkit-scrollbar-track {
+            background: #0b132b;
+        }
+        .result-table-frame::-webkit-scrollbar-thumb {
+            background: #1c2541;
+            border-radius: 10px;
+        }
+        .result-table-frame::-webkit-scrollbar-thumb:hover {
+            background: #00b4d8;
+        }
+
+        .back-btn-row {
+            flex-shrink: 0;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Full-Screen Layout Wrapper Container -->
+    <div class="app-wrap">
+        
+        <!-- Top Branding Header Navigation Banner -->
+        <header class="app-branding-header">
+            <h1>IT ASSETS MANAGEMENT</h1>
+            <!-- Horizontal Quick Access Navbar Links Matrix -->
+            <nav class="horizontal-navbar">
+                <a href="home.html">Home</a>
+                <a href="userarea.html">User Area</a>
+                <a href="reports.html" class="active">Reports</a>
+                <a href="master.html">Master</a>
+                <a href="transactions.html">Transactions</a>
+                <a href="special_access.html">Special Access</a>
+                <a href="#" class="logout-link">Logout</a>
+            </nav>
+        </header>
+
+        <!-- Sidebar + Core Workspace Inner Layout Section -->
+        <div class="main-container">
+            
+            <!-- Left Side Control Sidebar Menu Drawer -->
+            <aside class="sidebar">
+                <div class="logo-container">
+                    <img src="ntpc logo.png" alt="NTPC Logo" class="sidebar-logo">
+                </div>
+                <nav class="nav-menu">
+                    <a href="home.html" id="nav-home" class="nav-item">🏠 Home</a>
+                    <a href="userarea.html" id="nav-userarea" class="nav-item">👤 User Area</a>
+                    <a href="reports.html" id="nav-reports" class="nav-item active">📊 Reports</a>
+                    <a href="master.html" id="nav-master" class="nav-item">🛠️ Master</a>
+                    <a href="transactions.html" id="nav-transactions" class="nav-item">🔄 Transactions</a>
+                    <a href="special_access.html" id="nav-special" class="nav-item">🔑 Special Access</a>
+                    <a href="#" id="nav-logout" class="nav-item logout">🔓 Logout</a>
+                </nav>
+            </aside>
+
+            <!-- Main Workspace Gray Canvas (Viewport Locked & Non-Scrollable) -->
+            <main class="submaster-panel">
+                
+                <!-- Section Headings -->
+                <div class="submaster-titles-row">
+                    <h2 class="txt-master-main">REPORTS</h2>
+                    <h3 class="txt-submaster-accent">REPORT FORM</h3>
+    
+                <div class="filter-form-wrapper" id="formMainWrapper">
+                    <form>
+                        
+                        <!-- Row 1: Make, Type, Model Dropdowns -->
+                        <div class="form-row-three">
+                            <div class="form-group-block">
+                                <label>MAKE</label>
+                                <select id="filterMake" class="input-control-blue">
+                                    <option value="">--Select Option--</option>
+                                    <option value="HP">HP</option>
+                                    <option value="Dell">Dell</option>
+                                    <option value="Lenovo">Lenovo</option>
+                                    <option value="APC">APC</option>
+                                </select>
+                            </div>
+                            <div class="form-group-block">
+                                <label>TYPE</label>
+                                <select id="filterType" class="input-control-blue">
+                                    <option value="">--Select Option--</option>
+                                    <option value="Laptop">Laptop</option>
+                                    <option value="Desktop">Desktop</option>
+                                    <option value="Printer">Printer</option>
+                                    <option value="UPS">UPS</option>
+                                </select>
+                            </div>
+                            <div class="form-group-block">
+                                <label>MODEL</label>
+                                <select id="filterModel" class="input-control-blue">
+                                    <option value="">--Select Option--</option>
+                                    <option value="EliteBook 840">EliteBook 840</option>
+                                    <option value="ThinkPad L14">ThinkPad L14</option>
+                                    <option value="OptiPlex 3090">OptiPlex 3090</option>
+                                    <option value="LaserJet M1005">LaserJet M1005</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Row 2: Contractor, PO No, Department Dropdowns -->
+                        <div class="form-row-three">
+                            <div class="form-group-block">
+                                <label>CONTRACTOR</label>
+                                <select id="filterContractor" class="input-control-blue">
+                                    <option value="">--Select Option--</option>
+                                    <option value="Wipro">Wipro</option>
+                                    <option value="HCL">HCL</option>
+                                    <option value="Tata">Tata</option>
+                                </select>
+                            </div>
+                            <div class="form-group-block">
+                                <label>PO NO.</label>
+                                <select id="filterPoNo" class="input-control-blue">
+                                    <option value="">--Select Option--</option>
+                                    <option value="PO-2026-001">PO-2026-001</option>
+                                    <option value="PO-2026-002">PO-2026-002</option>
+                                </select>
+                            </div>
+                            <div class="form-group-block">
+                                <label>DEPARTMENT</label>
+                                <select id="filterDepartment" class="input-control-blue">
+                                    <option value="">--Select Option--</option>
+                                    <!-- यहाँ जावास्क्रिप्ट डेटाबेस से लाकर विभाग भरेगी -->
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Row 3: Ind Owner Full Width Dropdown -->
+                        <div class="form-row-three">
+                            <div class="form-group-block full-width-group">
+                                <label>IND OWNER</label>
+                                <select id="filterOwner" class="input-control-blue">
+                                    <option value="">--Select Option--</option>
+                                    <!-- यहाँ जावास्क्रिप्ट डेटाबेस से लाकर कर्मचारियों के नाम भरेगी -->
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Separator Line Split -->
+                        <hr class="form-divider-line">
+
+                        <!-- Row 4: Obsolete Status Radio Group Selection Row -->
+                        <div class="form-radio-row">
+                            <span class="radio-label-title">OBSOLETE</span>
+                            <div class="radio-options-group">
+                                <label class="radio-option-container">
+                                    <input type="radio" name="obsoleteStatus" value="N/A" checked>
+                                    <span class="custom-radio-text">N/A</span>
+                                </label>
+                                <label class="radio-option-container">
+                                    <input type="radio" name="obsoleteStatus" value="Yes">
+                                    <span class="custom-radio-text">Yes</span>
+                                </label>
+                                <label class="radio-option-container">
+                                    <input type="radio" name="obsoleteStatus" value="No">
+                                    <span class="custom-radio-text">No</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Row 5: Disposed Status Radio Group Selection Row -->
+                        <div class="form-radio-row">
+                            <span class="radio-label-title">DISPOSED</span>
+                            <div class="radio-options-group">
+                                <label class="radio-option-container">
+                                    <input type="radio" name="disposedStatus" value="N/A" checked>
+                                    <span class="custom-radio-text">N/A</span>
+                                </label>
+                                <label class="radio-option-container">
+                                    <input type="radio" name="disposedStatus" value="Yes">
+                                    <span class="custom-radio-text">Yes</span>
+                                </label>
+                                <label class="radio-option-container">
+                                    <input type="radio" name="disposedStatus" value="No">
+                                    <span class="custom-radio-text">No</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Full Width Accent Colored Query Button -->
+                        <div class="form-submit-row-full">
+                            <button type="submit" class="btn-search-submit btn-view-assets">VIEW ASSETS</button>
+                        </div>
+
+                    </form>
+                </div>
+                                <!-- परिणाम दिखाने के लिए छुपा हुआ रिपोर्ट ग्रिड कंटेनर (वन-पेज लॉक) -->
+                <div id="filterResultContainer" style="display: none; flex: 1; flex-direction: column; overflow: hidden;">
+                    <div style="background-color: #0b132b; border: 1px solid #1c2541; border-radius: 6px; padding: 15px; flex: 1; display: flex; flex-direction: column; overflow: hidden;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #1c2541; padding-bottom:8px; margin-bottom:10px;">
+                            <span style="font-size: 1.05rem; font-weight: bold; color: #00b4d8;">📊 Search Result Matrix</span>
+                            <button type="button" id="btnBackToForm" style="background:#455669; color:white; border:none; padding:6px 15px; border-radius:4px; cursor:pointer; font-weight:bold;">Modify Filters</button>
+                        </div>
+                        <div class="result-table-frame">
+                            <table class="records-data-table" style="width:100%;">
+                                <thead>
+                                    <tr>
+                                        <th>#SR</th>
+                                        <th>EMPLOYEE NAME</th>
+                                        <th>DEPARTMENT</th>
+                                        <th>ASSET SR./NO.</th>
+                                        <th>ASSET TYPE</th>
+                                        <th>OBSOLETE</th>
+                                        <th>REMARK</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="filterResultTableBody">
+                                    <!-- सर्च होने पर डेटाबेस की रोज़ यहाँ लोड होंगी -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Navigation Back Row Button -->
+                <div class="back-btn-row">
+                    <a href="reports.html" class="btn-submaster-back"> Back</a>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- फ़िल्टर और सर्च को लाइव चलाने का कोर जावास्क्रिप्ट इंजन -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const formWrapper = document.getElementById('formMainWrapper');
+            const resultContainer = document.getElementById('filterResultContainer');
+            const resultTableBody = document.getElementById('filterResultTableBody');
+            const filterForm = document.querySelector('form');
+            
+            // 1. [CRITICAL FIX]: पेज लोड होते ही डेटाबेस से ड्रॉपडाउन ऑप्शंस को फेच करके लोड करना
+            const timestamp = new Date().getTime();
+            fetch(`/api/reports/filters?v=${timestamp}`)
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error('Filter options fetch failed');
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    const deptSelect = document.getElementById('filterDepartment');
+                    const ownerSelect = document.getElementById('filterOwner');
+                    
+                    // डिपार्टमेंट के डिफ़ॉल्ट ऑप्शन के नीचे लाइव डेटा भरना
+                    if (deptSelect && data.departments) {
+                        data.departments.forEach(d => { 
+                            deptSelect.innerHTML += `<option value="${d}">${d}</option>`; 
+                        });
+                    }
+                    
+                    // इंडिविजुअल ओनर के नीचे लाइव डेटा भरना
+                    if (ownerSelect && data.owners) {
+                        data.owners.forEach(o => { 
+                            ownerSelect.innerHTML += `<option value="${o}">${o}</option>`; 
+                        });
+                    }
+                    console.log("✅ Dropdowns successfully filled from SQL database tables.");
+                })
+                .catch(err => {
+                    console.error("Dropdown population error:", err);
+                });
+
+            // 2. फॉर्म सबमिट होने पर लाइव फ़िल्टर सर्च एग्जीक्यूट करना
+            if (filterForm) {
+                filterForm.addEventListener('submit', function(e) {
+                    e.preventDefault(); // पेज को रीलोड होने से रोकें
+                    
+                    const payload = {
+                        department: document.getElementById('filterDepartment').value,
+                        owner: document.getElementById('filterOwner').value,
+                        obsolete: document.querySelector('input[name="obsoleteStatus"]:checked').value
+                    };
+
+                    fetch('/api/reports/filter-search', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    })
+                    .then(res => res.json())
+                    .then(res => {
+                        if (res.success && resultTableBody) {
+                            resultTableBody.innerHTML = res.html;
+                            // फॉर्म कंटेनर को छुपाकर परिणाम तालिका दिखाना
+                            if(formWrapper) formWrapper.style.display = 'none';
+                            if(resultContainer) resultContainer.style.display = 'flex';
+                        }
+                    })
+                    .catch(err => {
+                        console.error("Search pipeline execution error:", err);
+                        alert("Search pipeline failed to respond.");
+                    });
+                });
+            }
+
+            // 3. 'Modify Filters' बटन दबाने पर वापस फॉर्म पर जाना
+            const btnBack = document.getElementById('btnBackToForm');
+            if (btnBack) {
+                btnBack.addEventListener('click', function() {
+                    if(resultContainer) resultContainer.style.display = 'none';
+                    if (formWrapper) formWrapper.style.display = 'block';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

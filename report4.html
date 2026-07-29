@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Buy-Back Form - IT Assets Management</title>
+    <link rel="stylesheet" href="home.css">
+
+    <!-- [AUTO-REDIRECT MATRIX ENGINE]: अगर गलती से VS Code लाइव सर्वर (5500) पर खुलेगा, तो यह अपने आप सही पोर्ट पर ट्रांसफर कर देगा -->
+    <script>
+        if (window.location.port === '5500' || window.location.hostname === '127.0.0.1') {
+            // तुरंत बिना किसी बटन क्लिक के सही आईपी और पोर्ट पर रीडायरेक्ट करना
+            window.location.replace("http://192.168.31");
+        }
+    </script>
+    
+    <!-- वन-पेज नॉन-स्क्रॉलिंग और सुंदर डार्क इनपुट बॉक्स के लिए CSS स्टाइलिंग -->
+    <style>
+        html, body, .app-wrap {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .main-container {
+            display: flex;
+            height: calc(100vh - 60px);
+            width: 100%;
+        }
+
+        .submaster-panel {
+            flex: 1;
+            padding: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            background-color: #0d1b2a;
+            box-sizing: border-box;
+        }
+
+        /* फॉर्म का मुख्य बॉक्स लेआउट */
+        .buyback-form-wrapper {
+            background-color: #0b132b;
+            border: 1px solid #1c2541;
+            border-radius: 6px;
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-sizing: border-box;
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .form-title-segment {
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: #00b4d8;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #1c2541;
+            padding-bottom: 8px;
+        }
+
+        .buyback-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 15px;
+        }
+
+        .buyback-group label {
+            font-size: 0.82rem;
+            color: #a0aec0;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .buyback-input {
+            width: 100%;
+            padding: 10px 15px;
+            background-color: #1c2541;
+            border: 1px solid #0077b6;
+            border-radius: 4px;
+            color: #ffffff;
+            font-size: 0.9rem;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .buyback-input:focus {
+            border-color: #00b4d8;
+            box-shadow: 0 0 5px rgba(0, 180, 216, 0.4);
+        }
+
+        .btn-submit-buyback {
+            width: 100%;
+            background-color: #ff5722; /* आपकी सिग्नेचर ऑरेंज थीम */
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-submit-buyback:hover {
+            background-color: #ff7043;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Full-Screen Layout Wrapper Container -->
+    <div class="app-wrap">
+        
+        <!-- Top Branding Header Navigation Banner -->
+        <header class="top-header">
+            <div class="header-title">Dashboard of IT Assets Management</div>
+            <div class="header-buttons">
+                <button id="headerBtnHelp" class="btn btn-secondary">Help</button>
+                <button id="headerBtnSettings" class="btn btn-secondary">Settings</button>
+                <button id="headerBtnLogin" class="btn btn-primary">Login</button>
+            </div>
+        </header>
+
+        <!-- Sidebar + Core Workspace Inner Layout Section -->
+        <div class="main-container">
+            
+            <!-- Left Side Control Sidebar Menu Drawer -->
+            <aside class="sidebar">
+                <div class="logo-container">
+                    <img src="ntpc logo.png" alt="NTPC Logo" class="sidebar-logo">
+                </div>
+                <nav class="nav-menu">
+                    <a href="home.html" id="nav-home" class="nav-item">Home</a>
+                    <a href="userarea.html" id="nav-userarea" class="nav-item">User Area</a>
+                    <a href="reports.html" id="nav-reports" class="nav-item active">Reports</a>
+                    <a href="master.html" id="nav-master" class="nav-item">Master</a>
+                    <a href="transactions.html" id="nav-transactions" class="nav-item">Transactions</a>
+                    <a href="special_access.html" id="nav-special" class="nav-item">Special Access</a>
+                    <a href="#" id="nav-logout" class="nav-item logout">Logout</a>
+                </nav>
+            </aside>
+            <!-- Main Workspace Canvas (Viewport Locked & Non-Scrollable) -->
+            <main class="submaster-panel">
+                
+                <!-- Section Headings -->
+                <div style="flex-shrink: 0; margin-bottom: 15px; text-align: center;">
+                    <h2 style="color: #ffffff; font-size: 1.6rem; margin: 0;">REPORTS</h2>
+                    <h3 style="color: #ff5722; font-size: 1rem; margin: 2px 0 0 0; font-weight: bold; letter-spacing: 0.5px;">ASSET BUY-BACK FORM</h3>
+                </div>
+
+                <!-- Main Buy-Back Form Wrapper Box Container -->
+                <div class="buyback-form-wrapper">
+                    <div class="form-title-segment">📝 Employee Buy-Back Application</div>
+                    
+                    <form id="bbApplicationForm">
+                        
+                        <!-- Input 1: Employee ID -->
+                        <div class="buyback-group">
+                            <label>EMPLOYEE ID / TICKET NO.</label>
+                            <input type="text" id="bbEmpId" class="buyback-input" placeholder="e.g. 100245" required>
+                        </div>
+
+                        <!-- Input 2: Employee Name -->
+                        <div class="buyback-group">
+                            <label>EMPLOYEE NAME</label>
+                            <input type="text" id="bbEmpName" class="buyback-input" placeholder="e.g. Amit Kumar" required>
+                        </div>
+
+                        <!-- Input 3: Asset Serial Number -->
+                        <div class="buyback-group">
+                            <label>ASSET SERIAL NO.</label>
+                            <input type="text" id="bbSerialNo" class="buyback-input" placeholder="e.g. NTPC-LP-1234" required>
+                        </div>
+
+                        <!-- Input 4: Asset Type Dropdown -->
+                        <div class="buyback-group">
+                            <label>ASSET TYPE</label>
+                            <select id="bbAssetType" class="buyback-input" required>
+                                <option value="">-- Select Asset Category --</option>
+                                <option value="Laptop">Laptop</option>
+                                <option value="Desktop">Desktop</option>
+                                <option value="Tablet">Tablet</option>
+                                <option value="Printer">Printer</option>
+                            </select>
+                        </div>
+
+                        <!-- Input 5: Buy-Back Depreciated Amount -->
+                        <div class="buyback-group">
+                            <label>BUY-BACK AMOUNT (₹)</label>
+                            <input type="number" id="bbAmount" class="buyback-input" placeholder="e.g. 5000" min="0" required>
+                        </div>
+
+                        <!-- Full Width Submit Button -->
+                        <button type="submit" class="btn-submit-buyback">REGISTER BUY-BACK</button>
+                    </form>
+                </div>
+
+                <!-- Footer Navigation Back Row Button -->
+                <div class="back-btn-row" style="text-align: center; margin-top: 15px; flex-shrink: 0;">
+                    <a href="reports.html" class="btn-submaster-back" style="display: inline-block; background-color: #1c2541; color: #ffffff; text-decoration: none; padding: 10px 24px; border-radius: 4px; font-size: 0.85rem; font-weight: bold; border: 1px solid #1c2541;"> Back to Summary</a>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- फ़ॉर्म डेटा सीधे SQL डेटाबेस में जमा करने का जावास्क्रिप्ट कोर इंजन -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const buyBackForm = document.getElementById('bbApplicationForm');
+            
+            if (buyBackForm) {
+                buyBackForm.addEventListener('submit', function(e) {
+                    e.preventDefault(); 
+
+                    const payload = {
+                        empId: document.getElementById('bbEmpId').value,
+                        empName: document.getElementById('bbEmpName').value,
+                        serialNo: document.getElementById('bbSerialNo').value,
+                        assetType: document.getElementById('bbAssetType').value,
+                        amount: document.getElementById('bbAmount').value
+                    };
+
+                    // नोड जेएस के बायबैक सबमिशन API को कॉल करना
+                    fetch('/api/reports/buyback-submit', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Server connection error');
+                        }
+                        return response.json();
+                    })
+                    .then(res => {
+                        if (res.success) {
+                            alert(res.message);
+                            buyBackForm.reset(); 
+                        } else {
+                            alert('Submission failed: ' + res.message);
+                        }
+                    })
+                    .catch(err => {
+                        console.error('Error submitting form:', err);
+                        alert('Failed to establish pipeline connection with SQL Server.');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

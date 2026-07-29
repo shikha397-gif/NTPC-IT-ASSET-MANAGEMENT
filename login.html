@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - IT Assets Management Platform</title>
+    <link rel="stylesheet" href="home.css">
+    
+    <!-- वन-पेज लॉक्ड, बिना स्क्रॉल बार वाले शानदार लॉगिन कंसोल के लिए CSS -->
+    <style>
+        /* पूरे स्क्रीन व्यूपोर्ट को लॉक करना ताकि कोई स्क्रॉल बार न आए */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #0d1b2a; /* आपकी बेस थीम का गहरा नीला रंग */
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        /* लॉगिन का मुख्य कंटेनर बॉक्स */
+        .login-matrix-box {
+            background-color: #0b132b;
+            border: 1px solid #1c2541;
+            border-radius: 8px;
+            padding: 40px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        /* एनटीपीसी लोगो और टाइटल सेगमेंट */
+        .login-branding-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-logo {
+            max-width: 80px;
+            height: auto;
+            margin-bottom: 15px;
+            object-fit: contain;
+        }
+
+        .login-system-title {
+            color: #ffffff;
+            font-size: 1.3rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            margin: 0;
+        }
+
+        .login-system-subtitle {
+            color: #00b4d8;
+            font-size: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+
+        /* इनपुट लेबल्स और बॉक्स का ग्रुप */
+        .login-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .login-input-group label {
+            font-size: 0.78rem;
+            color: #a0aec0;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .login-control-input {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: #1c2541;
+            border: 1px solid #0077b6;
+            border-radius: 4px;
+            color: #ffffff;
+            font-size: 0.95rem;
+            outline: none;
+            box-sizing: border-box;
+            transition: all 0.2s ease;
+        }
+
+        .login-control-input:focus {
+            border-color: #00b4d8;
+            box-shadow: 0 0 8px rgba(0, 180, 216, 0.4);
+        }
+
+        /* लॉगिन बटन - सिग्नेचर ऑरेंज या ब्लू */
+        .btn-login-execute {
+            width: 100%;
+            background-color: #ff5722; /* आपकी पसंदीदा ऑरेंज एक्शन थीम */
+            color: #ffffff;
+            border: none;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-login-execute:hover {
+            background-color: #ff7043;
+        }
+
+        /* फुटर नोटिस लाइन */
+        .login-secure-footer {
+            font-size: 0.7rem;
+            color: #a0aec0;
+            text-align: center;
+            margin-top: 25px;
+            border-top: 1px solid #1c2541;
+            padding-top: 12px;
+            line-height: 1.3;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Centralized Authentication Box Container -->
+    <div class="login-matrix-box">
+        
+        <!-- Branding Top Block -->
+        <div class="login-branding-header">
+            <img src="ntpc logo.png" alt="NTPC Logo" class="login-logo">
+            <h1 class="login-system-title">IT ASSETS MANAGEMENT</h1>
+            <div class="login-system-subtitle">Secure Gateway Panel</div>
+        </div>
+        <!-- Authentication Interactive Form Segment -->
+        <form id="matrixLoginForm">
+            
+            <!-- Input Field 1: Username / Employee Ticket ID -->
+            <div class="login-input-group">
+                <label>USER ACCOUNT / EMPLOYEE ID</label>
+                <input type="text" id="loginUser" class="login-control-input" placeholder="Enter your User ID / Ticket No." required autocomplete="off">
+            </div>
+
+            <!-- Input Field 2: Password -->
+            <div class="login-input-group">
+                <label>VAULT SECURITY PASSWORD</label>
+                <input type="password" id="loginPass" class="login-control-input" placeholder="••••••••" required>
+            </div>
+
+            <!-- Action Submitting Execution Button -->
+            <button type="submit" class="btn-login-execute">SECURE LOGIN 🔓</button>
+        </form>
+
+        <!-- Dynamic Security Disclaimer Notice Footer -->
+        <div class="login-secure-footer">
+            🔒 Authorized personnel access only.<br>
+            All terminal activities are monitored under NTPC Cyber Governance Infrastructure.
+        </div>
+
+    </div>
+
+    <!-- फ्रंटएंड गेटवे नेविगेशन राउटिंग स्क्रिप्ट -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('matrixLoginForm');
+            
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault(); // फॉर्म सबमिट होने पर पेज को रीलोड होने से रोकें
+
+                    // इनपुट बॉक्स से क्रेडेंशियल्स उठाना
+                    const username = document.getElementById('loginUser').value.trim();
+                    const password = document.getElementById('loginPass').value;
+
+                    // [FRONT-END SMART ACCELERATION]: 
+                    // चूंकि अभी हम सिर्फ फ्रंटएंड पर काम कर रहे हैं, हमने एक यूनिवर्सल 
+                    // क्रेडेंशियल ('admin' और '124') सेट कर दिया है टेस्टिंग के लिए।
+                    if ((username === 'admin' || username === '100245') && password === '124') {
+                        
+                        // सफलता का अलर्ट और सीधे आपके होम पेज पर ट्रांसफर
+                        alert("✅ Authentication Success! Redirecting to IT Assets Console...");
+                        window.location.href = 'home.html';
+                        
+                    } else {
+                        // गलत क्रेडेंशियल्स होने पर एरर मैसेज
+                        alert("❌ Access Denied: Invalid Employee User ID or Vault Password!");
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

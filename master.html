@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Registry - IT Assets Management</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+    <!-- Top Header Navigation Links Matrix -->
+    <header class="top-header">
+        <div class="header-title">Dashboard of IT Assets Management</div>
+        <div class="header-buttons">
+            <button id="headerBtnHelp" class="btn btn-secondary">Help</button>
+            <button id="headerBtnSettings" class="btn btn-secondary">Settings</button>
+           
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo-container">
+                <img src="ntpc logo.png" alt="NTPC Logo" class="sidebar-logo">
+            </div>
+            <nav class="nav-menu">
+                <a href="home.html" id="nav-home" class="nav-item">Home</a>
+                <a href="userarea.html" id="nav-userarea" class="nav-item">User Area</a>
+                <a href="reports.html" id="nav-reports" class="nav-item">Reports</a>
+                <a href="master.html" id="nav-master" class="nav-item active">Master</a>
+                <a href="transactions.html" id="nav-transactions" class="nav-item">Transactions</a>
+                <a href="special_access.html" id="nav-special" class="nav-item">Special Access</a>
+                <a href="#" id="nav-logout" class="nav-item logout">Logout</a>
+            </nav>
+        </aside>
+
+        <!-- Main Master Configuration Panel (Viewport Locked) -->
+        <main class="master-panel">
+            
+            <!-- Master Registry Blue Banner -->
+            <div class="master-banner">
+                <div class="banner-info">
+                    <span class="system-badge">SYSTEM MASTER CORE</span>
+                    <h2 class="banner-heading">Master Registry Panel</h2>
+                    <p class="banner-subtext">Configure, structure, and optimize global corporate directory nodes, employee files, and vendor parameters.</p>
+                </div>
+                <div class="banner-actions">
+                    <button id="btnDbStatus" class="btn-db-status">DB Status</button>
+                </div>
+            </div>
+
+            <!-- Master Registry Cards Grid Framework (Injected with custom unique local image file configurations) -->
+            <div class="master-grid-container">
+                
+                <!-- Card 1: EMP MAST (E) -> सुधारे गए क्लिकेबल लेआउट के साथ -->
+<div id="cardEmpExec" class="master-registry-card" style="background-image: url('r6.avif'); cursor: pointer;" onclick="window.location.href='master3.html'">
+    <div class="card-bg-overlay"></div>
+    <span class="card-label">EMP MAST (E)</span>
+</div>
+
+
+                <!-- Card 2: EMP MAST (S) -> Links to master5.html -->
+                <div id="cardEmpStaff" class="master-registry-card" style="background-image: url('r2.jpg');">
+                    <div class="card-bg-overlay"></div>
+                    <span class="card-label">EMP MAST (S)</span>
+                </div>
+
+                <!-- Card 3: DEPT MAST (M) -> Links to master6.html -->
+                <div id="cardDeptMatrix" class="master-registry-card" style="background-image: url('r1.jpg');">
+                    <div class="card-bg-overlay"></div>
+                    <span class="card-label">DEPT MAST (M)</span>
+                </div>
+
+                <!-- Card 4: VENDOR MAST (E) -> Links to master4.html / master7.html -->
+                <div id="cardVendorExec" class="master-registry-card" style="background-image: url('m4.jpg');">
+                    <div class="card-bg-overlay"></div>
+                    <span class="card-label">VENDOR MAST (E)</span>
+                </div>
+
+                <!-- Row 2 (3 Columns) -->
+                <!-- Card 5: VENDOR MAST (S) -> Links to master8.html -->
+                <div id="cardVendorStaff" class="master-registry-card span-row2" style="background-image: url('m3.jpg');">
+                    <div class="card-bg-overlay"></div>
+                    <span class="card-label">VENDOR MAST (S)</span>
+                </div>
+
+                <!-- Card 6: ASSET MAST (E) -> Links to master1.html -->
+                <div id="cardAssetExec" class="master-registry-card span-row2" style="background-image: url('m2.jpg');">
+                    <div class="card-bg-overlay"></div>
+                    <span class="card-label">ASSET MAST (E)</span>
+                </div>
+
+                <!-- Card 7: ASSET MAST (S) -> Links to master2.html -->
+                <div id="cardAssetStaff" class="master-registry-card span-row2" style="background-image: url('m1.avif');">
+                    <div class="card-bg-overlay"></div>
+                    <span class="card-label">ASSET MAST (S)</span>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="home.js"></script>
+</body>
+</html>

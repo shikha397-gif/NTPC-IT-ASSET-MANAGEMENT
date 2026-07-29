@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports Console - IT Assets Management</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+    <!-- Top Header Navigation Links Matrix -->
+    <header class="top-header">
+        <div class="header-title">Dashboard of IT Assets Management</div>
+        <div class="header-buttons">
+            <button id="headerBtnHelp" class="btn btn-secondary">Help</button>
+            <button id="headerBtnSettings" class="btn btn-secondary">Settings</button>
+           
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo-container">
+                <img src="ntpc logo.png" alt="NTPC Logo" class="sidebar-logo">
+            </div>
+            <nav class="nav-menu">
+                <a href="home.html" id="nav-home" class="nav-item">Home</a>
+                <a href="userarea.html" id="nav-userarea" class="nav-item">User Area</a>
+                <a href="reports.html" id="nav-reports" class="nav-item active">Reports</a>
+                <a href="master.html" id="nav-master" class="nav-item">Master</a>
+                <a href="transactions.html" id="nav-transactions" class="nav-item">Transactions</a>
+                <a href="special_access.html" id="nav-special" class="nav-item">Special Access</a>
+                <a href="#" id="nav-logout" class="nav-item logout">Logout</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Panel (Viewport Locked & Non-Scrollable) -->
+        <main class="reports-panel">
+            
+            <!-- Top Banner Header -->
+            <div class="reports-banner">
+                <div class="banner-info">
+                    <span class="live-badge">● LIVE ANALYTICS ENGINE</span>
+                    <h2 class="banner-heading">Enterprise Reporting Console</h2>
+                    <p class="banner-subtext">Monitor real-time infrastructure distributions, asset depreciation lifecycles, and compliance matrices.</p>
+                </div>
+                <div class="banner-actions">
+                    <button id="btnSyncLive" class="btn-sync">Sync Live Data</button>
+                </div>
+            </div>
+
+            <!-- 5x2 Reporting Matrix Grid (Injected with local asset background parameters) -->
+            <div class="reports-grid">
+                
+                <!-- Tile 1: Overall View (Linked to report1.html) -->
+                <div id="tileOverall" class="report-tile" style="background-image: url('r1.jpg');">
+                    <div class="tile-image-mask"></div>
+                    <span class="tile-text">Overall View</span>
+                </div>
+
+                <!-- Tile 2: Deptwise View (Linked to report2.html) -->
+                <div id="tileDeptwise" class="report-tile" style="background-image: url('r2.jpg');">
+                    <div class="tile-image-mask"></div>
+                    <span class="tile-text">Deptwise View</span>
+                </div>
+
+                <!-- Tile 3: Report Form (Linked to report3.html) -->
+                <div id="tileForm" class="report-tile" style="background-image: url('r3.avif');">
+                    <div class="tile-image-mask"></div>
+                    <span class="tile-text">Report Form</span>
+                </div>
+
+                <!-- Tile 4: AMC Alert -> सुधारे गए क्लिकेबल लेआउट के साथ -->
+<div class="report-tile" style="background-image: url('r6.avif'); cursor: pointer;" onclick="window.location.href='reports7.html'">
+    <div class="tile-image-mask"></div>
+    <span class="tile-text">AMC Alert</span>
+</div>
+
+
+                <!-- Tile 5: Asset Dept Chart X -->
+                <div class="report-tile" style="background-image: url('r7.avif');">
+                    <div class="tile-image-mask"></div>
+                    <span class="tile-text">Asset Dept Chart X</span>
+                </div>
+
+                <!-- Tile 6: Executive vs Asset-X -->
+                <div class="report-tile" style="background-image: url('r8.webp');">
+                    <div class="tile-image-mask"></div>
+                    <span class="tile-text">Executive vs Asset-X</span>
+                </div>
+
+                <!-- Tile 7: Asset Search -->
+                <div class="report-tile" style="background-image: url('r9.avif');">
+                    <div class="tile-image-mask"></div>
+                    <span class="tile-text">Asset Search</span>
+                </div>
+
+                <!-- Tile 8: Asset Module -> सुधारे गए क्लिकेबल लेआउट के साथ -->
+<div class="report-tile" style="background-image: url('r10.jpg'); cursor: pointer;" onclick="window.location.href='reports6.html'">
+    <div class="tile-image-mask"></div>
+    <span class="tile-text">Asset Module</span>
+</div>
+
+                
+               
+
+                <div class="report-tile" style="background-image: url('m1.avif'); cursor: pointer;" onclick="window.location.href='reports5.html'">
+    <div class="tile-image-mask"></div>
+    <div class="tile-title-text" style="color: #ffffff; font-weight: bold; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; text-align: center; width: 100%; font-size: 1.1rem;">
+        Dues Pending
+    </div>
+</div>
+
+
+              <!-- बाकी सभी कार्ड्स की तरह ही बिल्कुल साफ़ और सुंदर डिज़ाइन -->
+<div class="report-tile" style="background-image: url('m2.jpg'); cursor: pointer;" onclick="window.location.href='report4.html'">
+    <div class="tile-image-mask"></div>
+    
+    <!-- बाकी बक्सों की तरह सिर्फ टेक्स्ट नाम, कोई एक्स्ट्रा बटन नहीं -->
+    <div class="tile-title-text" style="color: #ffffff; font-weight: bold; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; text-align: center; width: 100%; font-size: 1.1rem; letter-spacing: 0.5px;">
+        Asset Buy-Back
+    </div>
+</div>
+
+
+
+                   
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="home.js"></script>
+</body>
+</html>
